@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_09_161715) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_10_091223) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -35,7 +35,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_09_161715) do
   create_table "games", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "description"
-    t.string "image_url"
+    t.string "image_url_1"
+    t.string "image_url_2"
+    t.string "image_url_3"
     t.boolean "is_cooperative"
     t.string "level"
     t.string "name"
@@ -43,6 +45,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_09_161715) do
     t.string "play_time_minutes"
     t.float "price"
     t.string "release_date"
+    t.string "theme"
     t.datetime "updated_at", null: false
     t.string "video_url"
   end
