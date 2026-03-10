@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :create_default_collections #pour créer les collections par défaut à la création de l'utilisateur
+  after_create :create_default_collections # pour créer les collections par défaut à la création de l'utilisateur
 
 
   private
