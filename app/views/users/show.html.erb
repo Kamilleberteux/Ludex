@@ -6,7 +6,7 @@
           <% if @user.profile_photo_url.present? %>
             <%= image_tag @user.profile_photo_url, class: "avatar avatar-xl mb-3", alt: @user.username %>
           <% else %>
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar avatar-xl mb-3", alt: "Avatar" %>
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/", class: "avatar avatar-xl mb-3", alt: "Avatar" %>
           <% end %>
 
           <h3 class="card-title mb-1"><%= @user.username.presence || @user.email %></h3>
