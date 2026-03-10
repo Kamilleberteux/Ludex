@@ -7,12 +7,11 @@ class User < ApplicationRecord
 
   after_create :create_default_collections # pour créer les collections par défaut à la création de l'utilisateur
 
-
   private
 
   def create_default_collections
     ["Déjà joué", "Mes jeux", "Wishlist"].each do |name|
-      self.collections.create(name: name, is_default: true)
+      collections.create(name: name, is_default: true)
     end
   end
 end
