@@ -38,8 +38,37 @@ products.each do |handle, product_rows|
 
   # Extract nb_players, play_time_minutes, age_player from the first table row
   table_cells = doc.css('table td').map { |td| td.text.strip }.reject(&:empty?)
-  nb_players       = table_cells[0]
-  play_time_minutes = table_cells[1]
+
+  def play_time
+     # Parse HTML body
+       main_row = product_rows.find { |r| r['Title'].present? }
+    html_body = main_row['Body (HTML)'].to_s
+    doc = Nokogiri::HTML(html_body)
+    table_cells = doc.css('table td').map { |td| td.text.strip }.reject(&:empty?)
+    if table_cells[1] == "quelques heures ..."
+      return "180 min et +"
+    else
+      return table_cells[1]
+    end
+  end
+
+  def players
+     # Parse HTML body
+       main_row = product_rows.find { |r| r['Title'].present? }
+
+    html_body = main_row['Body (HTML)'].to_s
+    doc = Nokogiri::HTML(html_body)
+    table_cells = doc.css('table td').map { |td| td.text.strip }.reject(&:empty?)
+    if table_cells[0].include?("Difficulté")
+      return nil
+    else
+      return table_cells[0]
+    end
+  end
+
+
+  nb_players       = players
+  play_time_minutes = play_time
   age_from_table   = table_cells[2]
 
   # Extract video URL from iframe
@@ -85,6 +114,6 @@ products.each do |handle, product_rows|
   )
 
   puts "Created: #{name}"
-end
 
 puts "Creation of games completed"
+end
