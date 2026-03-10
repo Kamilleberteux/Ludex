@@ -1,0 +1,380 @@
+.games-index {
+  padding: 16px;
+
+  &__form {
+    margin-bottom: 16px;
+  }
+
+  &__search {
+    margin-bottom: 10px;
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  &__results-count {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 48px 16px;
+    color: #bbb;
+
+    p {
+      font-size: 15px;
+      margin: 0;
+    }
+  }
+}
+
+.filters-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #555;
+  cursor: pointer;
+
+  &--active {
+    border-color: $gray;
+    color: $gray;
+  }
+
+  &__badge {
+    background: $gray;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.filters-panel {
+  display: none;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  &--open {
+    display: block;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    &--full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  &__select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-family: inherit;
+    background: $light-gray;
+    color: #1a1a1a;
+    outline: none;
+    appearance: none;
+
+    &:focus {
+      border-color: $gray;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__apply {
+    flex: 1;
+    padding: 10px;
+    background: $gray;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  &__reset {
+    font-size: 13px;
+    color: #888;
+    text-decoration: underline;
+  }
+}
+
+.sort-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sort-option {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  &--active {
+    background: $gray;
+    border-color: $gray;
+    color: #fff;
+  }
+}
+
+.search-form {
+  &__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 14px;
+    color: #888;
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px 40px 12px 42px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    background: $light-gray;
+    outline: none;
+    font-family: inherit;
+
+    &:focus {
+      border-color: $gray;
+      background: #fff;
+    }
+  }
+
+  &__clear {
+    position: absolute;
+    right: 12px;
+    color: #aaa;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+  &__image-link {
+    display: block;
+    text-decoration: none;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+    background: $light-gray;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__add-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: $green;
+    font-size: 22px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    padding: 0 0 2px 0;
+
+    &:active {
+      background: #fff;
+      transform: scale(0.93);
+    }
+  }
+
+  &__body {
+    padding: 10px 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__title-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 800;
+    font-family: "Nunito", Helvetica, sans-serif;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 20px;
+
+    &--green {
+      background: rgba($green, 0.15);
+      color: darken($green, 20%);
+    }
+
+    &--yellow {
+      background: rgba($yellow, 0.25);
+      color: darken($yellow, 30%);
+    }
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+
+  &__menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    overflow: hidden;
+    padding: 6px 0;
+
+    &--open {
+      display: block;
+    }
+  }
+
+  &__label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 14px 4px;
+    margin: 0;
+  }
+
+  &__item {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1a1a1a;
+    cursor: pointer;
+
+    &:hover, &:active {
+      background: $light-gray;
+    }
+  }
+}

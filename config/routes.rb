@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   # get "collections", to: "collections#index",
-  resources :games, only: [:show]
+  resources :games, only: [:index, :show]
   resources :collections do
     member do
       post 'add_game/:game_id', to: 'collections#add_game', as: :add_game
