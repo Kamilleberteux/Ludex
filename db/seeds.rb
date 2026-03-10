@@ -1,61 +1,90 @@
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 
-
+require 'csv'
+require 'nokogiri'
 
 Game.destroy_all
-puts "Starting the creation of games"
+puts "Starting the creation of games from CSV"
 
+csv_path = Rails.root.join('public', 'products_export_1.csv')
+rows = CSV.read(csv_path, headers: true, encoding: 'UTF-8')
 
-# Add data seeding below
+# Group rows by Handle, preserving order
+products = {}
+rows.each do |row|
+  handle = row['Handle']
+  next if handle.nil? || handle.strip.empty?
+  products[handle] ||= []
+  products[handle] << row
+end
 
-#=> Creer un ou deux users de test en DB
+products.each do |handle, product_rows|
+  # Main row = the one with a Title
+  main_row = product_rows.find { |r| r['Title'].present? }
+  next unless main_row
 
-# default_collections
+  # Only process actual games, not events or tournaments
+  category = main_row['Product Category'].to_s
+  next unless category.include?('Toys & Games > Games')
 
+  name = main_row['Title']
+  price = main_row['Variant Price'].to_f
 
-Game.create(name: "Cup The Crab",
-description: "Dans Cup the Crab, les bernard-l'ermite parcourent la plage pour construire leur maison à partir de gobelets abandonnés. Ce jeu de cartes mélange gestion de main, timing et coups tactiques pour récupérer les meilleures piles de gobelets. Les joueurs collaborent pour créer des piles communes… mais la compétition reste intense lorsqu'il faut les récupérer au bon moment. Rapide, malin et plein de rebondissements, Cup the Crab propose des parties dynamiques où bluff et opportunisme font toute la différence.",
-image_url_1: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/cup-the-crab_07e9211b-f0bc-43fa-9a2e-11b8e6bf1772.webp?v=1772880203",
-image_url_2: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/cup-the-crab_07e9211b-f0bc-43fa-9a2e-11b8e6bf1772.webp?v=1772880203",
-image_url_3: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/cup-the-crab_07e9211b-f0bc-43fa-9a2e-11b8e6bf1772.webp?v=1772880203",
-is_cooperative: false,
-level: "Familial",
-nb_players: "3 à 5 joueurs",
-play_time_minutes: "15 min",
-price: 11.9,
-)
+  # Parse HTML body
+  html_body = main_row['Body (HTML)'].to_s
+  doc = Nokogiri::HTML(html_body)
 
-Game.create(name: "Eternal Decks",
-description: "Plongez dans Eternal Decks, un jeu de deck building coopératif où les joueurs unissent leurs forces pour résoudre des défis toujours plus complexes. Dans cet univers fantastique, l'humanité sombre dans un sommeil mystérieux et seule une expédition dans le monde des Éternels peut apporter une solution. Votre mission : construire votre deck, coopérer intelligemment et atteindre les objectifs de chaque niveau avant que l'équipe ne soit bloquée. Accessible mais stratégique, ce jeu propose une expérience coopérative intense et hautement rejouable.",
-image_url_1: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/eternal-decks.jpg?v=1772879095",
-image_url_2: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/eternal-decks.jpg?v=1772879095",
-image_url_3: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/eternal-decks.jpg?v=1772879095",
-is_cooperative: true,
-level: "Initié",
-nb_players: "1 à 4 joueurs",
-play_time_minutes: "30 min",
-price: 26.9,
-video_url: "https://www.youtube.com/embed/_Q4YFCgS8kI?si=HUdDZ_i-GepHyb1R"
-)
+  # Extract nb_players, play_time_minutes, age_player from the first table row
+  table_cells = doc.css('table td').map { |td| td.text.strip }.reject(&:empty?)
+  nb_players       = table_cells[0]
+  play_time_minutes = table_cells[1]
+  age_from_table   = table_cells[2]
 
-Game.create(name: "Apex Legends : Le Jeu de Plateau - Extension Kings Canyon",
-description: "Cette extension ajoute de nouvelles tuiles de carte pour Apex Legends : Le Jeu de Plateau, inspirées du paysage industriel de Kings Canyon. Elle introduit de nouveaux bâtiments et éléments de terrain, notamment des clôtures servant d'obstacles infranchissables. Ce nouveau plateau peut être connecté au plateau de base grâce à des tuiles de jonction, élargissant ainsi la zone de combat potentielle. L'extension apporte également un nouveau mode de jeu, Point de Contrôle, ainsi que de nouvelles cartes prédéfinies.",
-image_url_1: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/apex-legends-le-jeu-de-plateau-extension-plateau_1_dcace55f-caa2-4f21-bd68-b6bc4fcdea1b.webp?v=1772818209",
-image_url_2: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/apex-legends-le-jeu-de-plateau-extension-plateau_1_dcace55f-caa2-4f21-bd68-b6bc4fcdea1b.webp?v=1772818209",
-image_url_3: "https://cdn.shopify.com/s/files/1/0869/5998/0869/files/apex-legends-le-jeu-de-plateau-extension-plateau_1_dcace55f-caa2-4f21-bd68-b6bc4fcdea1b.webp?v=1772818209",
-is_cooperative: false,
-level: "Initié",
-nb_players: "1 à 6 joueurs",
-play_time_minutes: "60 à 90 min",
-price: 26.9,
-)
+  # Extract video URL from iframe
+  video_url = doc.css('iframe').first&.attr('src')
+
+  # Build plain-text description (remove table and iframes)
+  doc.css('table, iframe').remove
+  description = doc.css('body').text.gsub(/\s+/, ' ').strip.presence
+
+  # is_cooperative: rely on the Tags field
+  tags = main_row['Tags'].to_s.downcase
+  is_cooperative = tags.include?('cooperative')
+
+  # age_player: prefer from table, fallback to the recommended-age-group metafield
+  age_player = age_from_table.presence ||
+               main_row['Tranche d\'âge recommandée (product.metafields.shopify.recommended-age-group)']
+
+  # theme
+  theme = main_row['Thème (product.metafields.shopify.theme)'].presence
+
+  # Collect image URLs indexed by position (1, 2, 3)
+  images = {}
+  product_rows.each do |row|
+    position = row['Image Position'].to_i
+    src = row['Image Src'].to_s.strip
+    next if src.empty? || position.zero?
+    images[position] ||= src
+  end
+
+  Game.create!(
+    name:              name,
+    description:       description,
+    nb_players:        nb_players,
+    play_time_minutes: play_time_minutes,
+    age_player:        age_player,
+    price:             price,
+    is_cooperative:    is_cooperative,
+    theme:             theme,
+    video_url:         video_url,
+    image_url_1:       images[1],
+    image_url_2:       images[2],
+    image_url_3:       images[3]
+  )
+
+  puts "Created: #{name}"
+end
 
 puts "Creation of games completed"
