@@ -13,4 +13,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # get "collections", to: "collections#index",
+  resources :games, only: [:show]
+  resources :collections do
+    member do
+      post 'add_game/:game_id', to: 'collections#add_game', as: :add_game
+    end
+  end
 end
