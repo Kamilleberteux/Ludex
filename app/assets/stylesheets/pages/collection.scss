@@ -1,3 +1,30 @@
+.collections-scroll-container {
+  display: flex;
+  overflow-x: auto; /* Active le défilement horizontal */
+  gap: 10px;
+  padding: 10px;
+  white-space: nowrap; /* Empêche le retour à la ligne */
+  -webkit-overflow-scrolling: touch; /* Fluidité sur iPhone/Android */
+}
+
+.collection-tab {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border-radius: 20px; /* Effet "pill" très mobile */
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* Effet visuel quand la collection est active */
+.collection-tab.active {
+  background-color: $green; /* Couleur de ton thème */
+  color: black;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+
 .mobile-page-container {
   padding: 20px;
   max-width: 500px;
