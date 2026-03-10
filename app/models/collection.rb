@@ -1,7 +1,5 @@
 class Collection < ApplicationRecord
   belongs_to :user
+  has_many :collection_games
   has_many :games, through: :collection_games
 end
-
-# affiche un petit + a cote de la collection poour aller sur un seazrch et aller cherche le jeu
-# si pas de jeu dans la collection, afficher un message "Votre collection est vide!

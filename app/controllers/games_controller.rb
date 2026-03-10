@@ -1,4 +1,8 @@
 class GamesController < ApplicationController
+  def show
+    @game = Game.find(params[:id])
+  end
+
   def index
     @games = Game.all
     @games = @games.where("name ILIKE ? OR description ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") if params[:query].present?
@@ -19,8 +23,5 @@ class GamesController < ApplicationController
     @player_options = Game.distinct.order(:nb_players).pluck(:nb_players).compact
     @age_options    = Game.distinct.order(:age_player).pluck(:age_player).compact
     @active_filters = %i[theme nb_players age_player max_price sort].count { |k| params[k].present? }
-  end
-
-  def show
   end
 end

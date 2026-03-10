@@ -1,0 +1,19 @@
+<%# Barre de navigation (les tabs horizontaux) %>
+<div class="collections-scroll-container">
+  <% @collections.each do |collection| %>
+    <%= link_to collection.name, collection_path(collection),
+        class: "collection-tab #{'active' if @current_collection.id == collection.id}" %>
+  <% end %>
+</div>
+
+
+
+<%# ZONE QUI CHANGE %>
+<%# <% <turbo-frame id="games_list"> %>
+  <%# <h2>Jeux dans <%= @current_collection.name %></h2>
+  <%# <ul> %>
+    <%# <% @games.each do |game| %>
+      <%# <li><%= game.name %></li>
+    <%# <% end %>
+  <%# <% </ul> %>
+ <%# </turbo-frame> %>
