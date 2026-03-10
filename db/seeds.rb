@@ -20,6 +20,39 @@ rows.each do |row|
   products[handle] << row
 end
 
+def players_number(cell)
+  if cell != nil
+    if cell.include?("Difficulté")
+      return nil
+    else
+      return cell
+    end
+  end
+end
+
+def play_time(cell)
+    # Parse HTML body
+  if cell == "quelques heures ..."
+    return "180 min et +"
+  else
+    return cell
+  end
+end
+
+def level_eval(age)
+  if age == "5 ans et +"
+    "Enfant"
+  elsif age == "10 ans et +"
+    "Familial"
+  elsif age == "12 ans et +"
+    "Initié"
+  elsif age == "16 ans et +"
+    "Expert"
+  else
+    return nil
+  end
+end
+
 products.each do |handle, product_rows|
   # Main row = the one with a Title
   main_row = product_rows.find { |r| r['Title'].present? }
@@ -39,36 +72,8 @@ products.each do |handle, product_rows|
   # Extract nb_players, play_time_minutes, age_player from the first table row
   table_cells = doc.css('table td').map { |td| td.text.strip }.reject(&:empty?)
 
-  def play_time
-     # Parse HTML body
-       main_row = product_rows.find { |r| r['Title'].present? }
-    html_body = main_row['Body (HTML)'].to_s
-    doc = Nokogiri::HTML(html_body)
-    table_cells = doc.css('table td').map { |td| td.text.strip }.reject(&:empty?)
-    if table_cells[1] == "quelques heures ..."
-      return "180 min et +"
-    else
-      return table_cells[1]
-    end
-  end
-
-  def players
-     # Parse HTML body
-       main_row = product_rows.find { |r| r['Title'].present? }
-
-    html_body = main_row['Body (HTML)'].to_s
-    doc = Nokogiri::HTML(html_body)
-    table_cells = doc.css('table td').map { |td| td.text.strip }.reject(&:empty?)
-    if table_cells[0].include?("Difficulté")
-      return nil
-    else
-      return table_cells[0]
-    end
-  end
-
-
-  nb_players       = players
-  play_time_minutes = play_time
+  nb_players       = players_number(table_cells[0])
+  play_time_minutes = play_time(table_cells[1])
   age_from_table   = table_cells[2]
 
   # Extract video URL from iframe
@@ -88,6 +93,7 @@ products.each do |handle, product_rows|
 
   # theme
   theme = main_row['Thème (product.metafields.shopify.theme)'].presence
+  theme.split(";").first if theme != nil
 
   # Collect image URLs indexed by position (1, 2, 3)
   images = {}
@@ -110,7 +116,9 @@ products.each do |handle, product_rows|
     video_url:         video_url,
     image_url_1:       images[1],
     image_url_2:       images[2],
-    image_url_3:       images[3]
+    image_url_3:       images[3],
+    release_date:      rand(1999..2025),
+    level:             level_eval(age_player)
   )
 
   puts "Created: #{name}"
