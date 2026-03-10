@@ -8,7 +8,7 @@ class CollectionsController < ApplicationController
   def show
   @collections = current_user.collections # Pour la barre du haut
   @current_collection = Collection.find(params[:id]) # La sélectionnée
-  # @games = @current_collection.games # Les jeux à afficher en dessous
+  @games = @current_collection.games # Les jeux à afficher en dessous
   end
 
   # def add_game
@@ -21,7 +21,7 @@ class CollectionsController < ApplicationController
   #   else
   #     redirect_to game_path(@game), alert: "Impossible d'ajouter le jeu."
   #   end
-  end
+
 
 
   # def new
