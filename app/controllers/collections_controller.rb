@@ -1,8 +1,14 @@
 class CollectionsController < ApplicationController
-  before action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
-    @collections = current_user.collections
+    @collections = Collection.all
+  end
+
+  def show
+  @collections = current_user.collections # Pour la barre du haut
+  @current_collection = Collection.find(params[:id]) # La sélectionnée
+  # @games = @current_collection.games # Les jeux à afficher en dessous
   end
 
   def add_game
@@ -16,6 +22,23 @@ class CollectionsController < ApplicationController
       redirect_to game_path(@game), alert: "Impossible d'ajouter le jeu."
     end
   end
+
+
+  def new
+  @collection = current_user.collections.build
+  end
+
+def create
+  @collection = current_user.collections.build(collection_params)
+
+  if @collection.save
+    # On redirige l'utilisateur vers la liste des collections ou la nouvelle collection
+    redirect_to collections_path, notice: "La collection '#{@collection.name}' a été créée."
+  else
+    # Si erreur (ex: nom vide), on réaffiche le formulaire
+    render :new, status: :unprocessable_entity
+  end
+end
 
 
   # def create #pour crée la collection perso en option
