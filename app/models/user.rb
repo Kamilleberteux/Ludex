@@ -11,7 +11,7 @@ class User < ApplicationRecord
   private
 
   def create_default_collections
-    ["Deja joué", "Mes jeux", "Whislist"].each do |name|
+    ["Déjà joué", "Mes jeux", "Whislist"].each do |name|
       self.collections.create(name: name, is_default: true)
     end
   end
