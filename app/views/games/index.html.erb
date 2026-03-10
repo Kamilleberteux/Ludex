@@ -1,0 +1,101 @@
+<div class="games-index">
+  <%= form_with url: games_path, method: :get, class: "games-index__form", data: { controller: "filters", turbo_frame: "_top" } do |f| %>
+
+    <div class="games-index__search">
+      <div class="search-form__input-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="search-form__icon">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+        <%= f.text_field :query, value: params[:query], placeholder: "Rechercher un jeu...", class: "search-form__input" %>
+        <% if params[:query].present? %>
+          <%= link_to games_path, class: "search-form__clear" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="games-index__toolbar">
+      <p class="games-index__results-count">
+        <%= @games.count %> <%= @games.count == 1 ? "jeu" : "jeux" %>
+      </p>
+      <% toggle_class = @active_filters > 0 ? "filters-toggle filters-toggle--active" : "filters-toggle" %>
+      <button type="button" class="<%= toggle_class %>" data-action="click->filters#toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+        Filtrer &amp; trier
+        <% if @active_filters > 0 %>
+          <span class="filters-toggle__badge"><%= @active_filters %></span>
+        <% end %>
+      </button>
+    </div>
+
+    <div class="filters-panel" data-filters-target="panel">
+      <div class="filters-panel__grid">
+        <div class="filters-panel__group">
+          <label class="filters-panel__label">Thème</label>
+          <%= f.select :theme,
+                options_for_select([["Tous", ""]] + @themes.map { |t| [t, t] }, params[:theme]),
+                {}, class: "filters-panel__select", data: { action: "change->filters#submit" } %>
+        </div>
+
+        <div class="filters-panel__group">
+          <label class="filters-panel__label">Joueurs</label>
+          <%= f.select :nb_players,
+                options_for_select([["Tous", ""]] + @player_options.map { |p| [p, p] }, params[:nb_players]),
+                {}, class: "filters-panel__select", data: { action: "change->filters#submit" } %>
+        </div>
+
+        <div class="filters-panel__group">
+          <label class="filters-panel__label">Âge minimum</label>
+          <%= f.select :age_player,
+                options_for_select([["Tous", ""]] + @age_options.map { |a| [a, a] }, params[:age_player]),
+                {}, class: "filters-panel__select", data: { action: "change->filters#submit" } %>
+        </div>
+
+        <div class="filters-panel__group">
+          <label class="filters-panel__label">Prix max (€)</label>
+          <%= f.number_field :max_price, value: params[:max_price], placeholder: "ex: 40", min: 0, step: 1, class: "filters-panel__select" %>
+        </div>
+
+        <div class="filters-panel__group filters-panel__group--full">
+          <label class="filters-panel__label">Trier par</label>
+          <div class="sort-options">
+            <% [["Pertinence", ""], ["Prix ↑", "price_asc"], ["Prix ↓", "price_desc"], ["Date", "release_date"], ["A–Z", "name"]].each do |label, value| %>
+              <label class="sort-option <%= "sort-option--active" if params[:sort].to_s == value %>">
+                <%= f.radio_button :sort, value, checked: params[:sort].to_s == value, data: { action: "change->filters#submit" } %>
+                <%= label %>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters-panel__actions">
+        <%= f.submit "Appliquer", class: "filters-panel__apply" %>
+        <% if @active_filters > 0 %>
+          <%= link_to "Réinitialiser", games_path(query: params[:query]), class: "filters-panel__reset" %>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+
+  <% if @games.any? %>
+    <div class="games-grid">
+      <% @games.each do |game| %>
+        <%= render "game_card", game: game, show_add_btn: true %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="games-index__empty">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      </svg>
+      <p>Aucun jeu trouvé</p>
+    </div>
+  <% end %>
+</div>
