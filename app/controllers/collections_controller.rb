@@ -17,7 +17,7 @@ class CollectionsController < ApplicationController
 
     if @collection.games << @game
       # On redirige l'utilisateur là où il était avec un message flash
-      redirect_to collection_path(@collection), notice: "Le jeu a bien été ajouté à votre collection #{@collection.name} !"
+      redirect_back fallback_location: game_path(@game), notice: "Jeu ajouté à la collection."
     else
       redirect_to game_path(@game), alert: "Impossible d'ajouter le jeu."
     end
