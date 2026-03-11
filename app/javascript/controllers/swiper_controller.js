@@ -1,22 +1,22 @@
+// app/javascript/controllers/swiper_controller.js
 import { Controller } from "@hotwired/stimulus"
+import Swiper from "swiper" // C'est cette ligne qui lie ton importmap au code
 
-// Connecte-toi à Swiper (assure-toi qu'il soit importé dans ton application.js)
 export default class extends Controller {
-  connect() {
-    this.swiper = new Swiper(this.element, {
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      loop: true,
-    })
-  }
+ connect() {
+  const slidesCount = this.element.querySelectorAll('.swiper-slide').length;
 
-  // C'est important pour éviter les fuites de mémoire
-  // quand Turbo remplace le contenu de la page
+  this.swiper = new Swiper(this.element, {
+    pagination: {
+      el: this.element.querySelector('.swiper-pagination'),
+      clickable: true,
+    },
+    // On n'active le loop que si on a au moins 3 slides
+    loop: slidesCount >= 3,
+  })
+}
+
   disconnect() {
-    if (this.swiper) {
-      this.swiper.destroy()
-    }
+    if (this.swiper) this.swiper.destroy()
   }
 }

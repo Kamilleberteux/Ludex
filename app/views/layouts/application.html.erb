@@ -18,12 +18,16 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+
     <%= javascript_importmap_tags %>
 
-    <%#= link rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" %>
-    <%#= javascript_include_tag "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" %>
+
   </head>
 
   <body>
