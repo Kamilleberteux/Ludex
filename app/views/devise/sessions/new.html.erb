@@ -2,7 +2,7 @@
   <%= image_tag "Ludex.png", class: "auth-logo mb-5", alt: "Ludex", style: "width: 160px;" %>
 
   <div class="auth-card">
-    <h2>Log in</h2>
+    <h2>Connexion</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
@@ -14,12 +14,12 @@
         <%= f.input :password,
                     required: false,
                     input_html: { autocomplete: "current-password", class: "form-control mb-2" },
-                    label: "Password" %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                    label: "Mot de passe" %>
+        <%= f.input :remember_me, as: :boolean, label: "Se souvenir de moi" if devise_mapping.rememberable? %>
       </div>
 
       <div class="form-actions mt-3">
-        <%= f.button :submit, "Log in", class: "btn btn-ludex" %>
+        <%= f.button :submit, "Se connecter", class: "btn btn-ludex" %>
       </div>
     <% end %>
 
