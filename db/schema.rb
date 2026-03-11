@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_11_080020) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_11_145319) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "vector"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
@@ -64,6 +65,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_11_080020) do
     t.string "age_player"
     t.datetime "created_at", null: false
     t.string "description"
+    t.vector "embedding", limit: 768
     t.string "image_url_1"
     t.string "image_url_2"
     t.string "image_url_3"
