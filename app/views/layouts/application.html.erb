@@ -18,19 +18,23 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> <!-- Swiper JS pour le carrousel -->
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+
+    <%= javascript_importmap_tags %>
+
+
   </head>
 
   <body>
     <%= render "shared/flashes" %>
-    <div style="padding-bottom: 64px;">
+    <div style="<%= 'padding-bottom: 64px;' unless devise_controller? %>">
       <%= yield %>
     </div>
-    <%= render "shared/navbar" %>
+    <%= render "shared/navbar" unless devise_controller? %>
   </body>
 </html>

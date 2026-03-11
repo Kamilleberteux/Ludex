@@ -23,14 +23,7 @@ class CollectionsController < ApplicationController
     end
   end
 
-  # def create #pour crée la collection perso en option
-  #   @collection = current_user.collections.build(collection_params)
-  #   if @collection.save
-  #     redirect_to collections_path, notice: 'Collection created successfully.'
-  #   else
-  #     render :new
-  #   end
-  # end
+
 
   private
 

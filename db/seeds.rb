@@ -101,7 +101,6 @@ products.each do |handle, product_rows|
 
   # theme
   theme = main_row['Thème (product.metafields.shopify.theme)'].presence
-  theme.split(";").first if theme != nil
 
   # Collect image URLs indexed by position (1, 2, 3)
   images = {}
@@ -112,7 +111,7 @@ products.each do |handle, product_rows|
     images[position] ||= src
   end
 
-  Game.create!(
+  game = Game.new(
     name:              name,
     description:       description,
     nb_players:        nb_players,
@@ -129,8 +128,10 @@ products.each do |handle, product_rows|
     image_url_3:       images[3],
     release_date:      rand(1999..2025),
     level:             level_eval(age_player)
-  )
+    )
 
+  game.theme = game.theme.split(";").first if theme != nil
+  game.save!
   puts "Created: #{name}"
 
 puts "Creation of games completed"
