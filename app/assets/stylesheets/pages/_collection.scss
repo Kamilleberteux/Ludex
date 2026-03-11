@@ -24,7 +24,6 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-
 .mobile-page-container {
   padding: 20px;
   max-width: 500px;
@@ -62,4 +61,14 @@
   font-weight: bold;
   margin-top: 20px;
   cursor: pointer;
+}
+
+.page-title {
+  // color: black;
+  font-weight: bold;
+  text-align: left;
+  font-size: 22px;        /* Assez grand mais pas encombrant */
+  line-height: 0.9;       /* Évite que les lignes se collent */
+  color: #2c3e50;
+  margin: 15px 0;
 }
