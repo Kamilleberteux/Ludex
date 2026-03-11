@@ -57,3 +57,36 @@
   height: 8px;
   margin: 0 4px;
 }
+
+.game-image-wrapper {
+  position: relative; /* C'est le point d'ancrage pour le texte */
+  overflow: hidden;
+  border-radius: 12px; /* Pour arrondir les coins de l'image */
+
+  img {
+    width: 100%;
+    height: 200px; /* Force une hauteur fixe pour harmoniser ta grille */
+    object-fit: cover; /* Recadre l'image proprement */
+    display: block;
+  }
+}
+
+.game-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  /* Un dégradé noir transparent pour rendre le texte lisible sur l'image */
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.game-title {
+  color: white;
+  margin: 0;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Ombre pour la lisibilité */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ajoute des "..." si le nom est trop long */
+}
