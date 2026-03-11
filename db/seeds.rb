@@ -39,6 +39,15 @@ products.each do |handle, product_rows|
   # Extract nb_players, play_time_minutes, age_player from the first table row
   table_cells = doc.css('table td').map { |td| td.text.strip }.reject(&:empty?)
   nb_players       = table_cells[0]
+
+  # Parse min/max players from nb_players string (e.g. "2-4", "2 à 6", "4")
+  nb_players_min, nb_players_max = if nb_players =~ /(\d+)\s*[-à]\s*(\d+)/
+    [$1.to_i, $2.to_i]
+  elsif nb_players =~ /(\d+)/
+    [$1.to_i, $1.to_i]
+  else
+    [nil, nil]
+  end
   play_time_minutes = table_cells[1]
   age_from_table   = table_cells[2]
 
@@ -73,6 +82,8 @@ products.each do |handle, product_rows|
     name:              name,
     description:       description,
     nb_players:        nb_players,
+    nb_players_min:    nb_players_min,
+    nb_players_max:    nb_players_max,
     play_time_minutes: play_time_minutes,
     age_player:        age_player,
     price:             price,
