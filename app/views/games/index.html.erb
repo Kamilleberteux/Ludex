@@ -46,15 +46,34 @@
 
         <div class="filters-panel__group">
           <label class="filters-panel__label">Joueurs</label>
-          <%= f.select :nb_players,
-                options_for_select([["Tous", ""]] + @player_options.map { |p| [p, p] }, params[:nb_players]),
-                {}, class: "filters-panel__select", data: { action: "change->filters#submit" } %>
+          <%= f.number_field :nb_players, value: params[:nb_players], placeholder: "ex: 4", min: 1, step: 1, class: "filters-panel__select" %>
         </div>
 
         <div class="filters-panel__group">
           <label class="filters-panel__label">Âge minimum</label>
           <%= f.select :age_player,
                 options_for_select([["Tous", ""]] + @age_options.map { |a| [a, a] }, params[:age_player]),
+                {}, class: "filters-panel__select", data: { action: "change->filters#submit" } %>
+        </div>
+
+        <div class="filters-panel__group">
+          <label class="filters-panel__label">Niveau</label>
+          <%= f.select :level,
+                options_for_select([["Tous", ""]] + @level_options.map { |l| [l, l] }, params[:level]),
+                {}, class: "filters-panel__select", data: { action: "change->filters#submit" } %>
+        </div>
+
+        <div class="filters-panel__group">
+          <label class="filters-panel__label">Mode de jeu</label>
+          <%= f.select :cooperative,
+                options_for_select([["Tous", ""], ["Coopératif", "true"], ["Compétitif", "false"]], params[:cooperative]),
+                {}, class: "filters-panel__select", data: { action: "change->filters#submit" } %>
+        </div>
+
+        <div class="filters-panel__group">
+          <label class="filters-panel__label">Durée</label>
+          <%= f.select :play_time_minutes,
+                options_for_select([["Tous", ""]] + @play_time_options.map { |t| [t, t] }, params[:play_time_minutes]),
                 {}, class: "filters-panel__select", data: { action: "change->filters#submit" } %>
         </div>
 
