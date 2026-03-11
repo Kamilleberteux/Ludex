@@ -1,3 +1,6 @@
+<h1 class="page-title">Mes Collections</h1>
+
+
 <%# Barre de navigation (les tabs horizontaux) %>
 <div class="collections-scroll-container">
   <% @collections.each do |collection| %>
@@ -6,14 +9,14 @@
   <% end %>
 </div>
 
-
-
-<%# ZONE QUI CHANGE %>
-<%# <% <turbo-frame id="games_list"> %>
-  <%# <h2>Jeux dans <%= @current_collection.name %></h2>
-  <%# <ul> %>
-    <%# <% @games.each do |game| %>
-      <%# <li><%= game.name %></li>
-    <%# <% end %>
-  <%# <% </ul> %>
- <%# </turbo-frame> %>
+<%# 2. Grille de jeux à 2 colonnes %>
+<div class="games-grid">
+  <% if @games.any? %>
+    <% @games.each do |game| %>
+      <%# On appelle ta partial en lui passant la variable 'game' %>
+      <%= render "games/game_card", game: game %>
+    <% end %>
+  <% else %>
+    <p class="empty-msg">Aucun jeu dans cette collection.</p>
+  <% end %>
+</div>

@@ -1,0 +1,53 @@
+<div class="game-show-container">
+  <%# 1. Zone Image (Carrousel) %>
+
+  <div class="game-hero">
+ <%# On ajoute data-controller="swiper" sur l'élément parent %>
+<div class="swiper game-carousel" data-controller="swiper">
+  <div class="swiper-wrapper">
+    <% @game.photo_urls.each do |url| %>
+      <div class="swiper-slide">
+        <%= image_tag url, class: "carousel-img" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="swiper-pagination"></div>
+</div>
+  <%# Pagination points %>
+  <div class="swiper-pagination"></div>
+</div>
+  </div>
+
+  <div class="game-content">
+    <%# 2. Tag catégorie %>
+    <div class="category-tag">🌴 Stratégie & Ressources</div>
+
+    <%# 3. Grille d'infos (Les 4 petits carrés) %>
+    <div class="info-grid">
+      <div class="info-card">
+        <i class="icon-users"></i>
+        <strong>3–6</strong><br><span>JOUEURS</span>
+      </div>
+      <div class="info-card">
+        <i class="icon-clock"></i>
+        <strong>60–90min</strong><br><span>DURÉE</span>
+      </div>
+      <div class="info-card">
+        <i class="icon-sword"></i>
+        <strong>Compét.</strong><br><span>MODE</span>
+      </div>
+      <div class="info-card">
+        <i class="icon-cap"></i>
+        <strong>Initié</strong><br><span>NIVEAU</span>
+      </div>
+    </div>
+
+    <%# 4. Description %>
+    <h2>Description</h2>
+    <p><%= @game.description %></p>
+
+    <%# 5. Section Achat %>
+        <small>PRIX INDICATIF</small>
+        <div class="price">44,99 €</div>
+      </div>
