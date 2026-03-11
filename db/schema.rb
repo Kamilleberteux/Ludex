@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_10_153227) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_11_080020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -71,6 +71,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_10_153227) do
     t.string "level"
     t.string "name"
     t.string "nb_players"
+    t.integer "nb_players_max"
+    t.integer "nb_players_min"
     t.string "play_time_minutes"
     t.float "price"
     t.string "release_date"
