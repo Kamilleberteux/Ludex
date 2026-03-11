@@ -19,5 +19,4 @@ Rails.application.routes.draw do
       post 'add_game/:game_id', to: 'collections#add_game', as: :add_game
     end
   end
-
 end
