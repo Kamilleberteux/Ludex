@@ -57,14 +57,15 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @similar_games = Game.nearest_neighbors(:embedding, @game.embedding, distance: "euclidean").first(5)[1..]
+    @similar_games = Game.nearest_neighbors(:embedding, @game.embedding, distance: "euclidean").first(5)
+    @similar_games.shift
   end
 
   def index
     @games = Game.all
     if params[:query].present?
       @games = @games.where("name ILIKE ? OR description ILIKE ?", "%#{params[:query]}%",
-                            "%#{params[:query]}%")
+      "%#{params[:query]}%")
     end
     @games = @games.where(theme: params[:theme]) if params[:theme].present?
     if params[:nb_players].present?
@@ -78,12 +79,12 @@ class GamesController < ApplicationController
     @games = @games.where(play_time_minutes: params[:play_time_minutes]) if params[:play_time_minutes].present?
 
     @games = case params[:sort]
-             when "price_asc"     then @games.order(price: :asc)
-             when "price_desc"    then @games.order(price: :desc)
-             when "release_date"  then @games.order(release_date: :desc)
-             when "name"          then @games.order(name: :asc)
-             else @games
-             end
+    when "price_asc"     then @games.order(price: :asc)
+    when "price_desc"    then @games.order(price: :desc)
+    when "release_date"  then @games.order(release_date: :desc)
+    when "name"          then @games.order(name: :asc)
+    else @games
+    end
 
     @themes             = Game.distinct.order(:theme).pluck(:theme).compact
     @age_options        = Game.distinct.order(:age_player).pluck(:age_player).compact
@@ -91,5 +92,18 @@ class GamesController < ApplicationController
     @play_time_options  = Game.distinct.order(:play_time_minutes).pluck(:play_time_minutes).compact
     filter_keys = %i[theme nb_players age_player max_price sort level cooperative play_time_minutes]
     @active_filters = filter_keys.count { |k| params[k].present? }
+
+    @pagy, @games = pagy(
+      @games,
+      items: 6
+    )
+
+    if params[:page].present?
+      if @games.any?
+        render "scrollable_list" and return
+      else
+        render turbo_stream: turbo_stream.remove("next-page"), status: :no_content
+      end
+    end
   end
 end

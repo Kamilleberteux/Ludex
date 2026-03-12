@@ -14,7 +14,7 @@
   <% if @games.any? %>
     <% @games.each do |game| %>
       <%# On appelle ta partial en lui passant la variable 'game' %>
-      <%= render "games/game_card", game: game %>
+      <%= render "games/game_card", game: game, collection_game: @game_collection, show_delete_btn: true %>
     <% end %>
   <% else %>
     <p class="empty-msg">Aucun jeu dans cette collection.</p>

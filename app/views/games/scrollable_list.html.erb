@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "posts-page-#{params[:page]}", style: "display: contents" do %>
+  <%= render @games %>
+  <%= render partial: "next_page" %>
+<% end %>
