@@ -252,10 +252,6 @@
     flex: 0 0 calc(50% - 6px);
   }
 
-  turbo-frame {
-    // display: contents;
-  }
-
   turbo-frame[loading="lazy"] {
     display: flex;
     flex-wrap: wrap;
