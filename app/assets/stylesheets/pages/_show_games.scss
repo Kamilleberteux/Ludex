@@ -15,13 +15,14 @@
 }
 
 .category-tag {
-  background: #f0f4ef;
+  background: rgb(221, 219, 219);
   color: #5d7a5b;
   display: inline-block;
   padding: 5px 15px;
   border-radius: 20px;
   font-weight: 600;
   margin-top: -20px;
+  font-size-adjust: 0.6;
 }
 
 .buy-box {
@@ -105,9 +106,9 @@ p {
   transition: all 0.3s ease;
 
  &.line-clamp-none {
-    -webkit-line-clamp: unset;
+  -webkit-line-clamp: unset;
     /* On enlève l'overflow pour laisser le texte s'étendre */
-    overflow: visible;
+  overflow: visible;
   }
 }
 
@@ -149,8 +150,8 @@ p {
   font-size: 1.5rem;
 
   max-width: 85%;
-overflow: hidden;
-text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .video-container {
@@ -172,4 +173,10 @@ text-overflow: ellipsis;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.25rem;
 }
