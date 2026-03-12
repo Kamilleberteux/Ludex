@@ -1,4 +1,59 @@
 class GamesController < ApplicationController
+  def recommendation_form
+  end
+
+  def recommendation
+    @games = Game.all
+
+    # Nombre de joueurs
+    if params[:nb_players].present?
+      nb = params[:nb_players].to_i
+      @games = @games.where("nb_players_min <= ? AND nb_players_max >= ?", nb, nb)
+    end
+
+    # Temps de jeu
+    case params[:play_time]
+    when "30"  then @games = @games.where("play_time_minutes <= 30")
+    when "60"  then @games = @games.where("play_time_minutes BETWEEN 31 AND 75")
+    when "120" then @games = @games.where("play_time_minutes BETWEEN 76 AND 150")
+    when "180" then @games = @games.where("play_time_minutes > 150")
+    end
+
+    # Public / niveau
+    case params[:audience]
+    when "children" then @games = @games.where(level: "Enfant")
+    when "all" then @games = @games.where(level: "Familial")
+    when "casual" then @games = @games.where(level: "Initié")
+    when "expert" then @games = @games.where(level: "Expert")
+    end
+
+    # Thème
+    nature = []
+    urbain = []
+    fantastique = []
+
+    @games = @games.where(theme: params[:theme]) if params[:theme].present? && params[:theme] != "any"
+
+    # Type d'interaction
+    case params[:interaction]
+    when "competitive" then @games = @games.where(is_cooperative: false)
+    when "cooperative" then @games = @games.where(is_cooperative: true)
+    end
+
+    # Budget
+    if params[:budget].present? && params[:budget] != "any"
+      @games = @games.where("price <= ?", params[:budget].to_f)
+    end
+
+    @recommended_games = @games.limit(3).to_a
+
+    # Fallback si moins de 3 résultats
+    if @recommended_games.size < 3
+      fallback = Game.where.not(id: @recommended_games.map(&:id))
+                     .limit(3 - @recommended_games.size)
+      @recommended_games += fallback.to_a
+    end
+  end
 
   def show
     @game = Game.find(params[:id])

@@ -1,0 +1,221 @@
+$reco-green: #3A5C3A;
+
+// ── Layout global ────────────────────────────────────────
+.reco-form {
+  min-height: 100vh;
+  background: $ludex-green;
+  font-family: $body-font;
+}
+
+// ── Étape ────────────────────────────────────────────────
+.reco-step {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px); // 64px = navbar
+}
+
+.reco-step--entering {
+  animation: recoFadeIn 0.35s ease forwards;
+}
+
+@keyframes recoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Zone verte (question) ────────────────────────────────
+.reco-step__top {
+  padding: 28px 20px 48px;
+  flex-shrink: 0;
+}
+
+.reco-step__back {
+  background: rgba(white, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding: 0;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: rgba(white, 0.25);
+  }
+}
+
+.reco-step__progress-track {
+  background: rgba(white, 0.2);
+  border-radius: 99px;
+  height: 4px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.reco-step__progress-fill {
+  background: white;
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.reco-step__counter {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(white, 0.6);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.reco-step__question {
+  font-family: $headers-font;
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.3;
+  margin: 0;
+}
+
+// ── Zone blanche (réponses) ──────────────────────────────
+.reco-step__bottom {
+  background: white;
+  border-radius: 24px 24px 0 0;
+  margin-top: -24px;
+  flex: 1;
+  padding: 32px 20px 100px; // 100px pour la navbar
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// ── Boutons de réponse ───────────────────────────────────
+.reco-btn {
+  background: $ludex-light;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 18px 20px;
+  font-family: $body-font;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+
+  &:hover {
+    border-color: rgba($reco-green, 0.4);
+    background: darken($ludex-light, 2%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &.active {
+    border-color: $reco-green;
+    background: lighten($reco-green, 58%);
+    color: $reco-green;
+    font-weight: 600;
+  }
+}
+
+.reco-btn__icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+// ── Page résultats ───────────────────────────────────────
+.reco-results {
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: $body-font;
+  padding-bottom: 80px;
+}
+
+.reco-results__header {
+  background: $reco-green;
+  padding: 28px 20px 48px;
+}
+
+.reco-results__badge {
+  display: inline-block;
+  background: rgba(white, 0.2);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.reco-results__title {
+  font-family: $headers-font;
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.reco-results__body {
+  background: white;
+  border-radius: 24px 24px 0 0;
+  margin-top: -24px;
+  padding: 28px 16px;
+  min-height: 70vh;
+}
+
+.reco-results__subtitle {
+  font-size: 13px;
+  color: #888;
+  font-weight: 500;
+  margin: 0 0 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.reco-results__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.reco-results__retry {
+  display: block;
+  text-align: center;
+  background: $ludex-light;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  font-family: $body-font;
+  font-size: 14px;
+  font-weight: 600;
+  color: $reco-green;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: darken($ludex-light, 4%);
+    color: $reco-green;
+  }
+}
