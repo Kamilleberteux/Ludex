@@ -57,9 +57,9 @@
     <p><%= @game.description %></p>
 
     <%# 5. Section Achat %>
-      <small>PRIX INDICATIF</small>
-    <div class="price">44,99 €</div>
-
+        <small>PRIX INDICATIF</small>
+        <div class="price"><%= @game.price %>€</div>
+      </div>
     <h2>Jeux similaires</h2>
     <div class="games-grid">
         <% @similar_games.each do |game| %>
