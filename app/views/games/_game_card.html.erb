@@ -1,4 +1,4 @@
-<div class="game-card" <% if local_assigns[:show_add_btn] && user_signed_in? %>data-controller="dropdown" data-action="click@window->dropdown#close"<% end %>>
+<div class="game-card" <% if local_assigns[:show_add_btn] && user_signed_in? %>data-controller="dropdown" data-action="click@window->dropdown#close"<% elsif local_assigns[:show_delete_btn] && user_signed_in? %>data-controller="modal"<% end %>>
   <%= link_to game_path(game), class: "game-card__image-link" do %>
     <div class="game-card__image">
       <% if game.image_url_1.present? %>
@@ -9,14 +9,14 @@
 
   <% if local_assigns[:show_add_btn] && user_signed_in? %>
     <div class="dropdown">
-      <button class="game-card__add-btn" type="button" data-action="click->dropdown#toggle">+</button>
+      <button class="game-card__add-btn" type="button" data-action="click->dropdown#toggle" data-dropdown-target="addBtn">+</button>
       <div class="dropdown__menu" data-dropdown-target="menu">
         <p class="dropdown__label">Ajouter à...</p>
         <% current_user.collections.each do |collection| %>
           <%= button_to add_game_collection_path(collection, game_id: game.id),
                 method: :post,
                 class: "dropdown__item",
-                data: { turbo: false } do %>
+                form: { data: { action: "submit->dropdown#handleAdd" } } do %>
             <%= collection.name %>
           <% end %>
         <% end %>
@@ -24,6 +24,25 @@
     </div>
   <% end %>
 
+  <% if local_assigns[:show_delete_btn] && user_signed_in? %>
+    <button class="game-card__delete-btn" type="button" data-action="click->modal#open">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+    <div class="modal-overlay" data-modal-target="overlay" data-action="click->modal#backdropClose">
+      <div class="modal-card">
+        <p class="modal-card__title">Retirer le jeu ?</p>
+        <p class="modal-card__message">Ce jeu sera retiré de la collection.</p>
+        <div class="modal-card__actions">
+          <button class="modal-card__cancel" data-action="click->modal#close">Annuler</button>
+          <%= link_to collection_game_path(CollectionGame.find_by(collection: @current_collection, game: game)),
+            data: { turbo_method: :delete },
+            class: "modal-card__confirm" do %>
+            Retirer
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
   <div class="game-card__body">
     <%= link_to game_path(game), class: "game-card__title-link" do %>

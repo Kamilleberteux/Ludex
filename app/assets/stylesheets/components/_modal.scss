@@ -1,0 +1,70 @@
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1100;
+  align-items: center;
+  justify-content: center;
+
+  &--open {
+    display: flex;
+  }
+}
+
+.modal-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px 20px 20px;
+  width: calc(100% - 48px);
+  max-width: 320px;
+
+  &__title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 6px;
+    text-align: center;
+  }
+
+  &__message {
+    font-size: 13px;
+    color: #888;
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__cancel {
+    flex: 1;
+    padding: 12px;
+    background: $light-gray;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: #555;
+    cursor: pointer;
+  }
+
+  &__confirm {
+    flex: 1;
+    padding: 12px;
+    background: #e53935;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+  }
+}

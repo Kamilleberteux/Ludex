@@ -6,9 +6,9 @@ class CollectionsController < ApplicationController
   end
 
   def show
-  @collections = current_user.collections # Pour la barre du haut
-  @current_collection = Collection.find(params[:id]) # La sélectionnée
-  @games = @current_collection.games # Les jeux à afficher en dessous
+  @collections = current_user.collections
+  @current_collection = Collection.find(params[:id])
+  @games = @current_collection.games
   end
 
   def add_game
@@ -16,14 +16,11 @@ class CollectionsController < ApplicationController
     @game = Game.find(params[:game_id])
 
     if @collection.games << @game
-      # On redirige l'utilisateur là où il était avec un message flash
-      redirect_back fallback_location: game_path(@game), notice: "Jeu ajouté à la collection."
+      redirect_back fallback_location: game_path(@game)
     else
       redirect_to game_path(@game), alert: "Impossible d'ajouter le jeu."
     end
   end
-
-
 
   private
 

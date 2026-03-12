@@ -11,8 +11,10 @@ $home-green: #3A5C3A;
   background: $home-green;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  position: relative;
+  align-items: flex-start;
   padding: 16px 20px 0;
+  width: 100%;
 }
 
 .home__header-logo {
@@ -21,9 +23,16 @@ $home-green: #3A5C3A;
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 1px;
+  margin-bottom: 59px;
+  & img{
+    width: 90px;
+  }
 }
 
-.home__header-user {
+.home__header-profil {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   background: rgba(white, 0.15);
   border-radius: 50%;
   width: 38px;
@@ -32,14 +41,19 @@ $home-green: #3A5C3A;
   align-items: center;
   justify-content: center;
   color: white;
-  text-decoration: none;
-  font-size: 1rem;
+  cursor: pointer;
+  & a {
+    text-decoration: none;
+  }
 }
 
 // ── Greeting ────────────────────────────────────────────
 .home__greeting {
   background: $home-green;
   padding: 12px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 .home__greeting-sub {
@@ -240,4 +254,13 @@ $home-green: #3A5C3A;
   font-weight: 600;
   color: #1a1a1a;
   flex-shrink: 0;
+}
+
+.suggestions__home {
+  display: flex;
+  flex-direction: column;
+}
+
+.home__games{
+  display: flex;
 }
