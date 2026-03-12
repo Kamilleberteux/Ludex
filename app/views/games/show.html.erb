@@ -60,3 +60,10 @@
         <small>PRIX INDICATIF</small>
         <div class="price"><%= @game.price %>€</div>
       </div>
+    <h2>Jeux similaires</h2>
+    <div class="games-grid">
+        <% @similar_games.each do |game| %>
+          <%= render "games/game_card", game: game, show_add_btn: true %>
+        <% end %>
+    </div>
+  </div>
