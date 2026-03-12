@@ -1,10 +1,8 @@
-.game-show-container { background-color: #fafafa; padding-bottom: 20px; }
-
 .info-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin: 20px 0;
+  margin-top: 20px;
 }
 
 .info-card {
@@ -71,22 +69,107 @@
   }
 }
 
-.game-overlay {
+.game-content {
+  margin: 1.5rem;
+}
+
+h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+p {
+  font-size: 1rem;
+  text-align: justify;
+}
+
+.game-show-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px;
-  /* Un dégradé noir transparent pour rendre le texte lisible sur l'image */
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: 40px 20px 5px 10px; /* Plus d'espace en bas */
+
+  /* Dégradé plus prononcé pour une lecture parfaite du titre */
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+
 }
 
-.game-title {
-  color: white;
-  margin: 0;
-  font-size: 1.1rem;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Ombre pour la lisibilité */
-  white-space: nowrap;
+.description-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limite à 3 lignes */
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis; /* Ajoute des "..." si le nom est trop long */
+  transition: all 0.3s ease;
+
+ &.line-clamp-none {
+    -webkit-line-clamp: unset;
+    /* On enlève l'overflow pour laisser le texte s'étendre */
+    overflow: visible;
+  }
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: $green; /* Couleur de ton choix */
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.game-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.game-bubble-title {
+  position: absolute;
+  bottom: 15px; /* Décolle la bulle du bas de l'image */
+  left: 50%;    /* Place le point de départ au centre */
+  transform: translateX(-50%); /* Décale la bulle vers la gauche de la moitié de sa propre largeur */
+
+  /* Look de la bulle */
+  background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+  padding: 6px 16px;
+  border-radius: 50px; /* C'est ce qui donne l'effet arrondi (bulle) */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Petite ombre portée pour le relief */
+
+  /* Texte */
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  color: #333;
+  font-weight: 600;
+  font-size: 1.5rem;
+
+  max-width: 85%;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.video-container {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* Ratio 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

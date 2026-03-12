@@ -1,7 +1,7 @@
 <div class="game-show-container">
   <%# 1. Zone Image (Carrousel) %>
-
   <div class="game-hero">
+  </div>
  <%# On ajoute data-controller="swiper" sur l'élément parent %>
 <div class="swiper game-carousel" data-controller="swiper">
   <div class="swiper-wrapper">
@@ -10,20 +10,25 @@
         <%= image_tag url, class: "carousel-img" %>
       </div>
     <% end %>
-  </div>
+      <%# Le nom du jeu incrusté %>
+      <div class="game-show-overlay">
+        <%# La "bulle" qui contiendra le titre %>
+        <div class="game-bubble-title">
+          <span><%= @game.name %></span>
+        </div>
+      </div>
 
   <div class="swiper-pagination"></div>
 </div>
 
 
+</div>
   <%# Pagination points %>
 
-</div>
-  </div>
 
   <div class="game-content">
     <%# 2. Tag catégorie %>
-    <div class="category-tag"><%= @game.theme %></div>
+    <div class="category-tag"><i class="fa-solid fa-puzzle-piece"></i> <%= @game.theme %> </div>
     <%# 3. Grille d'infos (Les 4 petits carrés) %>
     <div class="info-grid">
       <div class="info-card">
@@ -37,14 +42,14 @@
       <div class="info-card">
         <i class="icon-sword"></i>
         <strong>
-  <% if @game.is_cooperative? %>
-    Cooperatif
-  <% else %>
-    Compétitif
-  <% end %>
-</strong>
-<br>
-<span>MODE</span>
+            <% if @game.is_cooperative? %>
+              Cooperatif
+            <% else %>
+              Compétitif
+            <% end %>
+          </strong>
+  <br>
+    <span>MODE</span>
       </div>
       <div class="info-card">
         <i class="icon-cap"></i>
@@ -54,11 +59,20 @@
 
     <%# 4. Description %>
     <h2>Description</h2>
-    <p><%= @game.description %></p>
+      <div data-controller="read-more">
+       <%# La classe "line-clamp" limite le texte à 3 lignes (besoin de Tailwind ou CSS) %>
+       <div data-read-more-target="content" class="description-text">
+    <%= @game.description %>
+  </div>
+
+  <button data-action="click->read-more#toggle" data-read-more-target="button" class="read-more-btn">
+    Lire la suite...
+  </button>
+  </div>
 
     <%# 5. Section Achat %>
-    <small>PRIX INDICATIF</small>
-    <div class="price"><%= @game.price %>€</div>
+    <h2>Prix indicatif</h2>
+    <div class="price"><%= @game.price %> €</div>
 
     <h2>Jeux similaires</h2>
     <div class="games-grid">
@@ -67,3 +81,17 @@
         <% end %>
     </div>
   </div>
+
+  <div class="video-container">
+  <h3>Découvrez le jeu en vidéo</h3>
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/ID_DE_LA_VIDEO"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+</div>
