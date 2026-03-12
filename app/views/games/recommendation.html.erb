@@ -1,0 +1,24 @@
+<div class="reco-results">
+
+  <div class="reco-results__header">
+    <span class="reco-results__badge">✦ Pour vous</span>
+    <h1 class="reco-results__title">Vos 3 jeux<br>recommandés</h1>
+  </div>
+
+  <div class="reco-results__body">
+    <p class="reco-results__subtitle">Sélection personnalisée</p>
+
+    <div class="reco-results__grid">
+      <% @recommended_games.each do |game| %>
+      <div class="game-card">
+        <%= render "game_card", game: game, show_add_btn: true %>
+      </div>
+      <% end %>
+    </div>
+
+    <%= link_to recommendation_form_games_path, class: "reco-results__retry" do %>
+      🔄 &nbsp; Refaire le questionnaire
+    <% end %>
+  </div>
+
+</div>
