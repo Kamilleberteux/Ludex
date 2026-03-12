@@ -2,16 +2,22 @@
   <!-- Header -->
   <header class="home__header">
     <span class="home__header-logo"><%= image_tag "Lu.png" %></span>
-    <button class="home__header-bell">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-      </svg>
-    </button>
+  <%= link_to games_path, class: "home__header-profil" do %>
+    <i class="fa-solid fa-circle-user"></i>
+  <% end %>
   </header>
 
   <!-- Greeting -->
   <div class="home__greeting">
-    <p class="home__greeting-sub">Good evening,</p>
+    <p class="home__greeting-sub">
+      <% if Time.now.hour > 17 %>
+        <%= "Bonsoir," %>
+      <% elsif Time.now.hour < 12 %>
+        <%= "Bon matin," %>
+      <% elsif Time.now.hour < 17 %>
+        <%= "Bonne aprés-midi," %>
+      <% end %>
+     </p>
     <h1 class="home__greeting-name">
       <%= user_signed_in? ? current_user.email.split("@").first.capitalize : "Alex" %> 👋
     </h1>
@@ -20,13 +26,13 @@
   <!-- FOR YOU card -->
   <div class="home__for-you">
     <div class="home__for-you-card">
-      <span class="home__for-you-badge">✦ FOR YOU</span>
-      <h2 class="home__for-you-title">Discover your<br>next favourite game</h2>
+      <span class="home__for-you-badge">✦ POUR TOI</span>
+      <h2 class="home__for-you-title">Découvre ton<br>prochain jeu favori!</h2>
       <button class="home__for-you-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-1">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
-        Get a recommendation
+        Besoin d'une recommendation ?
       </button>
       <div class="home__for-you-dice">🎲</div>
     </div>
@@ -36,8 +42,7 @@
   <% if user_signed_in? && @collections.any? %>
   <section class="home__section">
     <div class="home__section-header">
-      <h2 class="home__section-title">My collections</h2>
-      <%= link_to "See all →", collections_path, class: "home__section-link" %>
+      <h2 class="home__section-title">Mes collections</h2>
     </div>
     <div class="home__collections">
       <% collection_icons = { "Déjà joué" => "✅", "Mes jeux" => "🏠", "Wishlist" => "⭐" } %>
@@ -53,8 +58,29 @@
   </section>
   <% end %>
 
-  <!-- Bars near Paris -->
+<!-- Game suggestion
+    <% if user_signed_in? && @collections.any? %>
   <section class="home__section">
+    <div class="home__section-header">
+      <div class="suggestions__home">
+      <h2 class="home__section-title">Suggestions</h2>
+      <div class="home__games">
+      <% 2.times do %>
+      <%= render "games/game_card", game: Game.all.sample, show_add_btn: true %>
+      <% end %>
+      </div>
+      <div class="home__games">
+      <% 2.times do %>
+      <%= render "games/game_card", game: Game.all.sample, show_add_btn: true %>
+      <% end %>
+      </div>
+      </div>
+    </div>
+  </section>
+  <% end %> -->
+
+  <!-- Bars near Paris -->
+  <%# <section class="home__section">
     <div class="home__section-header">
       <h2 class="home__section-title">Bars near Paris</h2>
       <a href="#" class="home__section-link">See map →</a>
@@ -85,5 +111,5 @@
         <span class="home__bar-distance">1.1km</span>
       </a>
     </div>
-  </section>
+  </section> %>
 </div>
