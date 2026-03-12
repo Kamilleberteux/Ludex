@@ -57,11 +57,15 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @similar_games = Game.nearest_neighbors(:embedding, @game.embedding, distance: "euclidean").first(5)[1..]
   end
 
   def index
     @games = Game.all
-    @games = @games.where("name ILIKE ? OR description ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%") if params[:query].present?
+    if params[:query].present?
+      @games = @games.where("name ILIKE ? OR description ILIKE ?", "%#{params[:query]}%",
+                            "%#{params[:query]}%")
+    end
     @games = @games.where(theme: params[:theme]) if params[:theme].present?
     if params[:nb_players].present?
       nb_players = params[:nb_players].to_i
