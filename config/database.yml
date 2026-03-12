@@ -91,3 +91,6 @@ production:
     username: ludex
     password: <%= ENV["LUDEX_DATABASE_PASSWORD"] %>
     url: <%= ENV["DATABASE_URL"] %>
+  queue:
+    <<: *primary_production
+    migrations_paths: db/queue_migrate
