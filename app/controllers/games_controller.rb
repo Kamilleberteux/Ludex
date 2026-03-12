@@ -57,7 +57,8 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @similar_games = Game.nearest_neighbors(:embedding, @game.embedding, distance: "euclidean").first(5)[1..]
+    @similar_games = Game.nearest_neighbors(:embedding, @game.embedding, distance: "euclidean").first(5)
+    @similar_games.shift
   end
 
   def index
