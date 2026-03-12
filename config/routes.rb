@@ -19,12 +19,14 @@ Rails.application.routes.draw do
       post :recommendation
     end
   end
-resources :collections do
-  member do
-    post 'add_game/:game_id', to: 'collections#add_game', as: :add_game
-    # Ajoute cette ligne pour la suppression :
-    delete 'remove_game/:game_id', to: 'collections#remove_game', as: :remove_game
-  end
-end
 
+  resources :collections do
+    member do
+      post 'add_game/:game_id', to: 'collections#add_game', as: :add_game
+      # Ajoute cette ligne pour la suppression :
+      delete 'remove_game/:game_id', to: 'collections#remove_game', as: :remove_game
+    end
+  end
+
+  resources :collection_games, only: [:destroy]
 end

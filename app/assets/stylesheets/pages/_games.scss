@@ -244,9 +244,23 @@
 }
 
 .games-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
+
+  .game-card {
+    flex: 0 0 calc(50% - 6px);
+  }
+
+  turbo-frame {
+    // display: contents;
+  }
+
+  turbo-frame[loading="lazy"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
 }
 
 .game-card {
@@ -276,7 +290,7 @@
     }
   }
 
-  &__add-btn {
+    &__add-btn {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -291,10 +305,45 @@
     cursor: pointer;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
     padding: 0 0 2px 0;
+    z-index: 10;
 
     &:active {
       background: #fff;
       transform: scale(0.93);
+    }
+
+    i {
+      font-size: 14px;
+    }
+  }
+
+  &__delete-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: $ludex-green;
+    font-size: 22px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    padding: 0 0 2px 0;
+    z-index: 10;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    &:active {
+      background: #fff;
+      transform: scale(0.93);
+    }
+
+    i {
+      font-size: 14px;
     }
   }
 
@@ -355,8 +404,6 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 10;
-
   &__menu {
     display: none;
     position: absolute;
@@ -401,5 +448,3 @@
     }
   }
 }
-
-

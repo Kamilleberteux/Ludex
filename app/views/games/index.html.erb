@@ -106,10 +106,9 @@
   <% end %>
 
   <% if @games.any? %>
-    <div class="games-grid">
-      <% @games.each do |game| %>
-        <%= render "game_card", game: game, show_add_btn: true %>
-      <% end %>
+    <div class="games-grid" id="game">
+        <%= render @games %>
+        <%= render partial: "next_page" %>
     </div>
   <% else %>
     <div class="games-index__empty">

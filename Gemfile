@@ -77,3 +77,4 @@ end
 
 gem "neighbor"
 gem "informers"
+gem "pagy", "~> 9.3"
