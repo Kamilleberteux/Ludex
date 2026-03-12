@@ -92,8 +92,7 @@ products.each do |handle, product_rows|
   description = doc.css('body').text.gsub(/\s+/, ' ').strip.presence
 
   # is_cooperative: rely on the Tags field
-  tags = main_row['Tags'].to_s.downcase
-  is_cooperative = tags.include?('cooperative')
+  is_cooperative = description.include?('coop') if description != nil
 
   # age_player: prefer from table, fallback to the recommended-age-group metafield
   age_player = age_from_table.presence ||
