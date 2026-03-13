@@ -26,4 +26,6 @@ class Game < ApplicationRecord
   def generate_embedding!
     update!(embedding: self.class.embed("#{name} - #{description} - #{nb_players} - #{play_time_minutes}"))
   end
+
+
 end

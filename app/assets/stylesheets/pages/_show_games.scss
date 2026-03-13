@@ -115,7 +115,7 @@ p {
 .read-more-btn {
   background: none;
   border: none;
-  color: $green; /* Couleur de ton choix */
+  color: $ludex-green; /* Couleur de ton choix */
   cursor: pointer;
   font-weight: bold;
   padding: 5px 0;
@@ -179,4 +179,8 @@ h2 {
   margin-top: 20px;
   margin-bottom: 10px;
   font-size: 1.25rem;
+}
+
+.text-bold {
+  font-weight: bold; /* ou font-weight: 700; */
 }
