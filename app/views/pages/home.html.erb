@@ -19,7 +19,7 @@
       <% end %>
      </p>
     <h1 class="home__greeting-name">
-      <%= user_signed_in? ? current_user.email.split("@").first.capitalize : "Alex" %> 👋
+      <%= user_signed_in? ? current_user.username.capitalize : "Alex" %> 👋
     </h1>
   </div>
 
