@@ -1,14 +1,21 @@
 <% if notice %>
-  <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
+  <div class="alert alert-info alert-dismissible fade show m-1 flash-auto-dismiss" role="alert" style="position: fixed; top: 10px; right: 10px; z-index: 9999; white-space: nowrap; height: fit-content;">
     <%= notice %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
 <% if alert %>
-  <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
-    <%= alert %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
+  <div class="alert alert-warning alert-dismissible fade show m-1 flash-auto-dismiss" role="alert" style="position: fixed; top: 10px; right: 10px; z-index: 9999; white-space: nowrap; height: fit-content;">
+    <%= alert.gsub("You need to sign in or sign up before continuing.", "Veuillez vous connecter ou vous inscrire pour continuer.").gsub("Invalid email or password.", "Email ou mot de passe invalide.") %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
+
+<script>
+    document.querySelectorAll(".flash-auto-dismiss").forEach(function(el) {
+      setTimeout(function() {
+        el.classList.remove("show");
+        setTimeout(function() { el.remove(); }, 500);
+      }, 2000);
+    });
+</script>

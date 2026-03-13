@@ -8,6 +8,11 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
+        <%= f.input :username,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "username" },
+                    label: "Nom d'utilisateur" %>
         <%= f.input :email,
                     required: true,
                     autofocus: true,
@@ -22,10 +27,12 @@
                     required: true,
                     input_html: { autocomplete: "new-password" },
                     label: "Confirmation du mot de passe" %>
+      <div class="mb-3">
         <%= f.input :profile_photo,
                     as: :file,
                     required: false,
                     label: "Photo de profil (optionnel)" %>
+      </div>
       </div>
 
       <div class="form-actions">
@@ -37,4 +44,4 @@
       <%= render "devise/shared/links" %>
     </div>
   </div>
-</div>  
+</div>

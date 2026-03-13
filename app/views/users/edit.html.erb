@@ -40,10 +40,12 @@
         <%= f.email_field :email, class: "field-input" %>
       </div>
 
-      <div class="field-group">
-        <%= f.label :city, "Ville", class: "field-label" %>
-        <%= f.text_field :city, class: "field-input", placeholder: "Votre ville" %>
-      </div>
+    <div class="field-group" data-controller="city-autocomplete">
+      <%= f.label :city, "Ville", class: "field-label" %>
+        <%= f.text_field :city, class: "field-input", placeholder: "Votre ville",
+          data: { city_autocomplete_target: "input" },
+        autocomplete: "off" %>
+      <ul data-city-autocomplete-target="suggestions" class="autocomplete-list"></ul>
     </div>
 
     <div class="edit-profile-actions">
