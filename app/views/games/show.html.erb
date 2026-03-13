@@ -37,12 +37,12 @@
       <div class="info-card">
         👥<br>
         <i class="icon-users"></i>
-        <%= "#{@game.nb_players_min} à #{@game.nb_players_max}" %><br><span>JOUEURS</span>
+        <%= "#{@game.nb_players_min} à #{@game.nb_players_max}" %><br><span class="text-bold">JOUEURS</span>
       </div>
       <div class="info-card">
         ⏳<br>
         <i class="icon-clock"></i>
-        <bold><%= @game.play_time_minutes %><br></bold><span>DURÉE</span>
+        <%= @game.play_time_minutes %><br><span class="text-bold">DURÉE</span>
       </div>
       <div class="info-card">
         ⚔️<br>
@@ -54,11 +54,11 @@
             <% end %>
 
   <br>
-    <span>MODE</span>
+    <span class="text-bold">MODE</span>
       </div>
       <div class="info-card">
-        <i class="icon-cap"></i>
-        <%= @game.level %><br><span>NIVEAU</span>
+        <i class="icon-cap"></i><br>
+        <%= @game.level %><br><span class="text-bold">NIVEAU</span>
       </div>
     </div>
 
