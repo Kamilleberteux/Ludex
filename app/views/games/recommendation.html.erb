@@ -9,11 +9,11 @@
     <p class="reco-results__subtitle">Sélection personnalisée</p>
 
     <div class="reco-results__grid">
+      <div class="games-grid">
       <% @recommended_games.each do |game| %>
-      <div class="game-card">
         <%= render "game_card", game: game, show_add_btn: true %>
-      </div>
       <% end %>
+      </div>
     </div>
 
     <%= link_to recommendation_form_games_path, class: "reco-results__retry" do %>

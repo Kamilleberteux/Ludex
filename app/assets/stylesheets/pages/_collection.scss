@@ -5,6 +5,8 @@
   padding: 10px;
   white-space: nowrap; /* Empêche le retour à la ligne */
   -webkit-overflow-scrolling: touch; /* Fluidité sur iPhone/Android */
+  font-family: $body-font;
+
 }
 
 .collection-tab {
@@ -17,10 +19,17 @@
 }
 
 /* Effet visuel quand la collection est active */
-.collection-tab.active {
-  background-color: $green; /* Couleur de ton thème */
-  color: black;
+.collection-tab {
+  background-color: white; /* Couleur de ton thème */
+  color: $ludex-green;
   font-weight: bold;
+  border-radius: 20px;
+  transition: all 0.3s ease; /* Pour un effet d'animation fluide */
+}
+
+.collection-tab.active {
+  background-color: $ludex-green; /* Fond vert */
+  color: #ffffff;           /* Texte blanc */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
@@ -28,6 +37,8 @@
   padding: 20px;
   max-width: 500px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .header-action {
@@ -64,13 +75,37 @@
 }
 
 .page-title {
-  // color: black;
   font-weight: bold;
   text-align: left;
   font-size: 22px;        /* Assez grand mais pas encombrant */
   line-height: 0.9;       /* Évite que les lignes se collent */
-  color: #2c3e50;
-  margin: 15px 0;
+  color: white;
+  margin-left: 1rem;
+  padding-top: 35px;
 }
 
+.title-and-tabs {
+  background: $ludex-green;
+  font-family: $body-font;
+  // margin-bottom: 10px;
+}
 
+.collection-container{
+  background: $ludex-green;
+  font-family: $body-font;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  gap: 20px; /* Espace entre les jeux */
+  padding: 0 20px;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  margin-top: -24px;
+  flex: 1;
+  padding: 32px 20px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
