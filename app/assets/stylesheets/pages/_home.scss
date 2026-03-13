@@ -123,6 +123,7 @@
   align-items: center;
   gap: 6px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .home__for-you-dice {
@@ -264,6 +265,7 @@
 .suggestions__home {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .home__games{
