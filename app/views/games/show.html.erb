@@ -57,8 +57,17 @@
     <span class="text-bold">MODE</span>
       </div>
       <div class="info-card">
-        <i class="icon-cap"></i><br>
-        <%= @game.level %><br><span class="text-bold">NIVEAU</span>
+        <i class="icon-cap"></i>
+        <% if @game.level == "Enfant" %>
+          🧒 <br>Enfant
+        <% elsif @game.level == "Familial" %>
+          👨‍👩‍👧‍👦 <br>Familial
+        <% elsif @game.level == "Initié" %>
+          🧠 <br>Initié
+        <% elsif @game.level == "Expert" %>
+          💀 <br>Expert
+        <% end %>
+        <br><span class="text-bold">NIVEAU</span>
       </div>
     </div>
 
