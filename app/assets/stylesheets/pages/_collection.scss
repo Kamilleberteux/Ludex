@@ -95,17 +95,9 @@
   font-family: $body-font;
 }
 
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-  gap: 20px; /* Espace entre les jeux */
-  padding: 0 20px;
+.title-and-tabs .games-grid {
   background: white;
   border-radius: 24px 24px 0 0;
   margin-top: -24px;
-  flex: 1;
   padding: 32px 20px 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }

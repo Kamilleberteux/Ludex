@@ -35,7 +35,9 @@
         </svg>
         Recommander un jeu
       <% end %>
-      <div class="home__for-you-dice">🎲</div>
+      <div class="home__for-you-dice">
+        🎲
+      </div>
     </div>
   </div>
   </div><!-- /.home__green-area -->
@@ -69,7 +71,7 @@
             <h2 class="home__section-title">Suggestions</h2>
           </div>
           <div class="games-grid">
-            <% @suggestion_games.each do |game|%>
+            <% @suggestion_games.each do |game| %>
               <%= render "games/game_card", game: game, show_add_btn: true %>
             <% end %>
           </div>
