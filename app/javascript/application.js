@@ -4,3 +4,7 @@ import "controllers"
 import "@popperjs/core"
 import "bootstrap"
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js", { scope: "/" })
+}
+
