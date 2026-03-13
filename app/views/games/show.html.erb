@@ -18,14 +18,12 @@
         </div>
       </div>
 
-  <div class="swiper-pagination"></div>
-  
-</div>
-
-
-</div>
   <%# Pagination points %>
+  <div class="swiper-pagination"></div>
 
+</div>
+
+</div>
 
   <div class="game-content">
     <%# 2. Tag catégorie %><% if @game.theme.present? %>
@@ -37,14 +35,17 @@
     <%# 3. Grille d'infos (Les 4 petits carrés) %>
     <div class="info-grid">
       <div class="info-card">
+        👥<br>
         <i class="icon-users"></i>
         <%= "#{@game.nb_players_min} à #{@game.nb_players_max}" %><br><span>JOUEURS</span>
       </div>
       <div class="info-card">
+        ⏳<br>
         <i class="icon-clock"></i>
-        <%= @game.play_time_minutes %><br><span>DURÉE</span>
+        <bold><%= @game.play_time_minutes %><br></bold><span>DURÉE</span>
       </div>
       <div class="info-card">
+        ⚔️<br>
         <i class="icon-sword"></i>
             <% if @game.is_cooperative? %>
               Cooperatif
