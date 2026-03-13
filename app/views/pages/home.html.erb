@@ -1,4 +1,5 @@
 <div class="home">
+  <div class="home__green-area">
   <!-- Header -->
   <header class="home__header">
     <span class="home__header-logo"><%= image_tag "Lu.png" %></span>
@@ -19,7 +20,7 @@
       <% end %>
      </p>
     <h1 class="home__greeting-name">
-      <%= user_signed_in? ? current_user.username.capitalize : "Alex" %> 👋
+      <%= user_signed_in? && !current_user.username.nil? ? current_user.username.capitalize : "Alex" %> 👋
     </h1>
   </div>
 
@@ -32,11 +33,12 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-1">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg>
-        Besoin d'une recommendation ?
-      <% end %>
+        Recommander un jeu
+      </button>
       <div class="home__for-you-dice">🎲</div>
     </div>
   </div>
+  </div><!-- /.home__green-area -->
 
   <!-- My collections -->
   <% if user_signed_in? && @collections.any? %>
@@ -58,28 +60,25 @@
   </section>
   <% end %>
 
-<!-- Game suggestion
-    <% if user_signed_in? && @collections.any? %>
-  <section class="home__section">
-    <div class="home__section-header">
-      <div class="suggestions__home">
-      <h2 class="home__section-title">Suggestions</h2>
-      <div class="home__games">
-      <% 2.times do %>
-      <%= render "games/game_card", game: Game.all.sample, show_add_btn: true %>
-      <% end %>
+<!-- Game suggestion -->
+  <% if user_signed_in? && @collections.any? %>
+    <section class="home__section">
+      <div class="home__section-header">
+        <div class="suggestions__home">
+          <div class="home__section-header">
+            <h2 class="home__section-title">Suggestions</h2>
+          </div>
+          <div class="games-grid">
+            <% @suggestion_games.each do |game|%>
+              <%= render "games/game_card", game: game, show_add_btn: true %>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <div class="home__games">
-      <% 2.times do %>
-      <%= render "games/game_card", game: Game.all.sample, show_add_btn: true %>
-      <% end %>
-      </div>
-      </div>
-    </div>
-  </section>
-  <% end %> -->
+    </section>
+  <% end %>
 
-  <!-- Bars near Paris -->
+  <!-- Bars near Paris
   <%# <section class="home__section">
     <div class="home__section-header">
       <h2 class="home__section-title">Bars near Paris</h2>
@@ -111,5 +110,5 @@
         <span class="home__bar-distance">1.1km</span>
       </a>
     </div>
-  </section> %>
+  </section> -->
 </div>

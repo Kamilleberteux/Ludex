@@ -1,14 +1,17 @@
-$home-green: #3A5C3A;
-
 .home {
   min-height: 100vh;
   background: #f5f5f5;
   font-family: $body-font;
 }
 
+// ── Green area wrapper ───────────────────────────────────
+.home__green-area {
+  background: $ludex-green;
+}
+
 // ── Header ──────────────────────────────────────────────
 .home__header {
-  background: $home-green;
+  background: $ludex-green;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -23,9 +26,10 @@ $home-green: #3A5C3A;
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 1px;
-  margin-bottom: 59px;
+  margin-bottom: 30px;
   & img{
     width: 90px;
+    display: block;
   }
 }
 
@@ -49,7 +53,7 @@ $home-green: #3A5C3A;
 
 // ── Greeting ────────────────────────────────────────────
 .home__greeting {
-  background: $home-green;
+  background: $ludex-green;
   padding: 12px 20px 28px;
   display: flex;
   flex-direction: column;
@@ -72,16 +76,17 @@ $home-green: #3A5C3A;
 
 // ── FOR YOU card ────────────────────────────────────────
 .home__for-you {
-  background: $home-green;
+  background: $ludex-green;
   padding: 0 16px 24px;
 }
 
 .home__for-you-card {
-  background: darken($home-green, 6%);
+  background: darken($ludex-green, 6%);
   border-radius: 18px;
   padding: 20px 20px 20px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 6px;
 }
 
 .home__for-you-badge {
@@ -113,7 +118,7 @@ $home-green: #3A5C3A;
   padding: 10px 18px;
   font-size: 14px;
   font-weight: 600;
-  color: $home-green;
+  color: $ludex-green;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -123,7 +128,7 @@ $home-green: #3A5C3A;
 .home__for-you-dice {
   position: absolute;
   right: 16px;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   font-size: 52px;
   opacity: 0.9;
@@ -159,7 +164,7 @@ $home-green: #3A5C3A;
 .home__section-link {
   font-size: 13px;
   font-weight: 600;
-  color: $home-green;
+  color: $ludex-green;
   text-decoration: none;
 }
 
