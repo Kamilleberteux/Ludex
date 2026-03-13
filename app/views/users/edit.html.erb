@@ -17,16 +17,17 @@
       </div>
     <% end %>
 
-    <div class="edit-profile-photo">
+    <div class="edit-profile-photo" data-controller="photo-preview">
       <% if @user.profile_photo_url.present? %>
-        <%= image_tag @user.profile_photo_url, class: "current-photo" %>
+        <img src="<%= @user.profile_photo_url %>" class="current-photo" data-photo-preview-target="preview" />
       <% else %>
-        <div class="photo-placeholder">
-          <i class="fas fa-user fa-2x text-white"></i>
-        </div>
+    <div class="photo-placeholder" data-photo-preview-target="placeholder">
+      <i class="fas fa-user fa-2x text-white"></i>
+    </div>
+      <img class="current-photo d-none" data-photo-preview-target="preview" />
       <% end %>
-      <%= f.file_field :profile_photo, class: "d-none", accept: "image/*", id: "photo-upload" %>
-      <label for="photo-upload" class="change-photo-btn">Changer la photo</label>
+      <%= f.file_field :profile_photo, class: "d-none", accept: "image/*", id: "photo-upload", data: { photo_preview_target: "input", action: "change->photo-preview#preview" } %>
+        <label for="photo-upload" class="change-photo-btn">Changer la photo</label>
     </div>
 
     <div class="edit-profile-fields">
