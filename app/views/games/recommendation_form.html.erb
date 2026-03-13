@@ -17,7 +17,7 @@
         <div class="reco-step__progress-track">
           <div class="reco-step__progress-fill" style="width: 14%"></div>
         </div>
-        <p class="reco-step__counter">1 / 7</p>
+        <p class="reco-step__counter">1 / 6</p>
         <h2 class="reco-step__question">Je souhaite...</h2>
       </div>
       <div class="reco-step__bottom">
@@ -47,7 +47,7 @@
         <div class="reco-step__progress-track">
           <div class="reco-step__progress-fill" style="width: 28%"></div>
         </div>
-        <p class="reco-step__counter">2 / 7</p>
+        <p class="reco-step__counter">2 / 6</p>
         <h2 class="reco-step__question">Vous serez combien à jouer ?</h2>
       </div>
       <div class="reco-step__bottom">
@@ -85,7 +85,7 @@
         <div class="reco-step__progress-track">
           <div class="reco-step__progress-fill" style="width: 43%"></div>
         </div>
-        <p class="reco-step__counter">3 / 7</p>
+        <p class="reco-step__counter">3 / 6</p>
         <h2 class="reco-step__question">Combien de temps voulez-vous jouer ?</h2>
       </div>
       <div class="reco-step__bottom">
@@ -123,7 +123,7 @@
         <div class="reco-step__progress-track">
           <div class="reco-step__progress-fill" style="width: 57%"></div>
         </div>
-        <p class="reco-step__counter">4 / 7</p>
+        <p class="reco-step__counter">4 / 6</p>
         <h2 class="reco-step__question">Avec qui allez-vous jouer ?</h2>
       </div>
       <div class="reco-step__bottom">
@@ -150,45 +150,7 @@
       </div>
     </div>
 
-    <%# Étape 5 : Thème %>
-    <div data-recommendation-target="step" class="reco-step">
-      <div class="reco-step__top">
-        <button type="button" class="reco-step__back" data-action="click->recommendation#back">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-          </svg>
-        </button>
-        <div class="reco-step__progress-track">
-          <div class="reco-step__progress-fill" style="width: 71%"></div>
-        </div>
-        <p class="reco-step__counter">5 / 7</p>
-        <h2 class="reco-step__question">Avez-vous un thème de prédilection ?</h2>
-      </div>
-      <div class="reco-step__bottom">
-        <button type="button" class="reco-btn"
-                data-action="click->recommendation#answer"
-                data-name="theme" data-value="Nature">
-          <span class="reco-btn__icon">🌿</span> Nature
-        </button>
-        <button type="button" class="reco-btn"
-                data-action="click->recommendation#answer"
-                data-name="theme" data-value="Fantastique">
-          <span class="reco-btn__icon">🧙</span> Fantastique
-        </button>
-        <button type="button" class="reco-btn"
-                data-action="click->recommendation#answer"
-                data-name="theme" data-value="Urbain">
-          <span class="reco-btn__icon">🏙️</span> Urbain
-        </button>
-        <button type="button" class="reco-btn"
-                data-action="click->recommendation#answer"
-                data-name="theme" data-value="any">
-          <span class="reco-btn__icon">🎲</span> Peu m'importe
-        </button>
-      </div>
-    </div>
-
-    <%# Étape 6 : Interaction %>
+    <%# Étape 5 : Interaction %>
     <div data-recommendation-target="step" class="reco-step">
       <div class="reco-step__top">
         <button type="button" class="reco-step__back" data-action="click->recommendation#back">
@@ -199,7 +161,7 @@
         <div class="reco-step__progress-track">
           <div class="reco-step__progress-fill" style="width: 85%"></div>
         </div>
-        <p class="reco-step__counter">6 / 7</p>
+        <p class="reco-step__counter">5 / 6</p>
         <h2 class="reco-step__question">Quel type d'interaction préférez-vous ?</h2>
       </div>
       <div class="reco-step__bottom">
@@ -221,44 +183,42 @@
       </div>
     </div>
 
-    <%# Étape 7 : Budget %>
+    <%# Étape 6 : Budget %>
     <div data-recommendation-target="step" class="reco-step">
-      <% link_to recommendation_games_path do %>
-        <div class="reco-step__top">
-          <button type="button" class="reco-step__back" data-action="click->recommendation#back">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-            </svg>
-          </button>
-          <div class="reco-step__progress-track">
-            <div class="reco-step__progress-fill" style="width: 100%"></div>
-          </div>
-          <p class="reco-step__counter">7 / 7</p>
-          <h2 class="reco-step__question">Quel est votre budget ?</h2>
+      <div class="reco-step__top">
+        <button type="button" class="reco-step__back" data-action="click->recommendation#back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+          </svg>
+        </button>
+        <div class="reco-step__progress-track">
+          <div class="reco-step__progress-fill" style="width: 100%"></div>
         </div>
-        <div class="reco-step__bottom">
-          <button type="button" class="reco-btn"
-                  data-action="click->recommendation#answer"
-                  data-name="budget" data-value="20">
-            <span class="reco-btn__icon">💰</span> Entre 10€ et 20€
-          </button>
-          <button type="button" class="reco-btn"
-                  data-action="click->recommendation#answer"
-                  data-name="budget" data-value="50">
-            <span class="reco-btn__icon">💳</span> Entre 30€ et 50€
-          </button>
-          <button type="button" class="reco-btn"
-                  data-action="click->recommendation#answer"
-                  data-name="budget" data-value="100">
-            <span class="reco-btn__icon">💎</span> Entre 60€ et 100€
-          </button>
-          <button type="button" class="reco-btn"
-                  data-action="click->recommendation#answer"
-                  data-name="budget" data-value="any">
-            <span class="reco-btn__icon">🤑</span> Plus de 100€
-          </button>
-        </div>
-      <% end %>
+        <p class="reco-step__counter">6 / 6</p>
+        <h2 class="reco-step__question">Quel est votre budget ?</h2>
+      </div>
+      <div class="reco-step__bottom">
+        <button type="button" class="reco-btn"
+                data-action="click->recommendation#answer"
+                data-name="budget" data-value="20">
+          <span class="reco-btn__icon">💰</span> Entre 10€ et 20€
+        </button>
+        <button type="button" class="reco-btn"
+                data-action="click->recommendation#answer"
+                data-name="budget" data-value="50">
+          <span class="reco-btn__icon">💳</span> Entre 30€ et 50€
+        </button>
+        <button type="button" class="reco-btn"
+                data-action="click->recommendation#answer"
+                data-name="budget" data-value="100">
+          <span class="reco-btn__icon">💎</span> Entre 60€ et 100€
+        </button>
+        <button type="button" class="reco-btn"
+                data-action="click->recommendation#answer"
+                data-name="budget" data-value="any">
+          <span class="reco-btn__icon">🤑</span> Plus de 100€
+        </button>
+      </div>
     </div>
 
 <% end %>
