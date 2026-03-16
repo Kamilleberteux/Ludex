@@ -83,17 +83,16 @@
     </div>
 
     <%# 5. Section Achat %>
-<div class="price-container">
-  <div class="price-info">
-    <span class="price-label">PRIX INDICATIF</span>
-    <span class="price-value"><%= number_with_precision(@game.price, precision: 2) %> €</span>
-  </div>
+  <div class="price-container">
+    <div class="price-info">
+      <span class="price-label">PRIX INDICATIF</span>
+      <span class="price-value"><%= number_with_precision(@game.price, precision: 2) %> €</span>
+    </div>
 
-  <%= link_to "https://shop.loufoque.fr/products/", target: "_blank", class: "shop-button" do %>
-    <i class="icon-shop"></i> Voir la boutique
-  <% end %>
-</div>
-</div>
+    <%= link_to "https://shop.loufoque.fr/products/", target: "_blank", class: "shop-button" do %>
+      <i class="icon-shop"></i> Voir la boutique
+    <% end %>
+  </div>
 
     <% if @game.video_url.present? %>
       <h2>Découvrez les règles du jeu en vidéo</h2>
@@ -115,5 +114,4 @@
       <% end %>
     </div>
   </div>
-
-</div>
+  </div>

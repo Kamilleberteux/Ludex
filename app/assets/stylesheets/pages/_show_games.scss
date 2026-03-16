@@ -68,7 +68,7 @@
 
 /* Pagination en bas de l'image comme sur ton screenshot */
 .swiper-pagination-bullet {
-  background: #ffffff;
+  background: black;
   width: 8px;
   height: 8px;
   margin: 0 4px;
@@ -187,7 +187,6 @@ h2 {
   margin-bottom: 10px;
   font-size: 1.15rem;
   font-weight: bold;
-
 }
 
 .text-bold {
@@ -198,10 +197,11 @@ h2 {
   display: flex;
   justify-content: space-between; /* Pousse les éléments aux extrémités */
   align-items: center;            /* Centre verticalement */
-  padding: 15px 20px;
+  padding: 10px 20px;
   background-color: #fff;         /* Fond blanc */
   border: 1px solid #eee;         /* Bordure fine */
   border-radius: 16px;            /* Coins arrondis */
+  margin-top: 15px;
 }
 
 .price-info {
@@ -233,3 +233,5 @@ h2 {
   align-items: center;
   gap: 8px;                       /* Espace entre icône et texte */
 }
+
+
