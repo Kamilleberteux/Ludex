@@ -1,8 +1,6 @@
 <div class="game-show-container">
   <%# 1. Zone Image (Carrousel) %>
-  <div class="game-hero">
-  </div>
- <%# On ajoute data-controller="swiper" sur l'élément parent %>
+<%# 1. Le carrousel reste seul à l'intérieur de son div %>
 <div class="swiper game-carousel" data-controller="swiper">
   <div class="swiper-wrapper">
     <% @game.photo_urls.each do |url| %>
@@ -10,105 +8,111 @@
         <%= image_tag url, class: "carousel-img" %>
       </div>
     <% end %>
-      <%# Le nom du jeu incrusté %>
-      <div class="game-show-overlay">
-        <%# La "bulle" qui contiendra le titre %>
-        <div class="game-bubble-title">
-          <span><%= @game.name %></span>
-        </div>
-      </div>
-
+  </div>
   <%# Pagination points %>
   <div class="swiper-pagination"></div>
-
 </div>
 
+<%# 2. Le titre est maintenant en dessous, en dehors du swiper %>
+<div class="game-show-title-container">
+  <div class="game-bubble-title">
+    <span><%= @game.name %></span>
+  </div>
 </div>
+
 
   <div class="game-content">
-    <%# 2. Tag catégorie %><% if @game.theme.present? %>
-    <div class="category-tag"><i class="fa-solid fa-puzzle-piece"></i> <%= @game.theme.capitalize %> </div>
-    <% else %>
-    <div class="category-tag"><i class="fa-solid fa-puzzle-piece"></i> Un bon moment entre amis </div>
-    <% end %>
+    <%# 2. Tag catégorie %><div class="category-tag">
+      <i class="fa-solid fa-puzzle-piece"></i><% if @game.theme.present? %> <%= @game.theme.capitalize %>
+      <% else %> Mystère
+      <% end %>
+    </div>
 
     <%# 3. Grille d'infos (Les 4 petits carrés) %>
     <div class="info-grid">
       <div class="info-card">
         👥<br>
         <i class="icon-users"></i>
-        <%= "#{@game.nb_players_min} à #{@game.nb_players_max}" %><br><span class="text-bold">JOUEURS</span>
+        <span class="text-bold"><%= "#{@game.nb_players_min} à #{@game.nb_players_max}" %></span><br><span>JOUEURS</span>
       </div>
       <div class="info-card">
         ⏳<br>
         <i class="icon-clock"></i>
-        <%= @game.play_time_minutes %><br><span class="text-bold">DURÉE</span>
+        <span class="text-bold"><%= @game.play_time_minutes %></span><br><span>DURÉE</span>
       </div>
       <div class="info-card">
         ⚔️<br>
         <i class="icon-sword"></i>
-            <% if @game.is_cooperative? %>
-              Cooperatif
-            <% else %>
-              Compétitif
-            <% end %>
+        <span class="text-bold">
+        <% if @game.is_cooperative? %>
+          Cooperatif
+        <% else %>
+          Compétitif
+        <% end %></span>
 
-  <br>
-    <span class="text-bold">MODE</span>
+        <br>
+        <span>MODE</span>
       </div>
       <div class="info-card">
         <i class="icon-cap"></i>
-        <% if @game.level == "Enfant" %>
-          🧒 <br>Enfant
-        <% elsif @game.level == "Familial" %>
-          👨‍👩‍👧‍👦 <br>Familial
-        <% elsif @game.level == "Initié" %>
-          🧠 <br>Initié
+        <span class="text-bold">
+          <% if @game.level == "Enfant" %>
+            🧒 <br>Enfant
+          <% elsif @game.level == "Familial" %>
+            👨‍👩‍👧‍👦 <br>Familial
+          <% elsif @game.level == "Initié" %>
+            🧠 <br>Initié
         <% elsif @game.level == "Expert" %>
           💀 <br>Expert
-        <% end %>
-        <br><span class="text-bold">NIVEAU</span>
+        <% end %></span>
+        <br><span>NIVEAU</span>
       </div>
     </div>
 
     <%# 4. Description %>
     <h2>Description</h2>
-      <div data-controller="read-more">
-       <%# La classe "line-clamp" limite le texte à 3 lignes (besoin de Tailwind ou CSS) %>
-       <div data-read-more-target="content" class="description-text">
-    <%= @game.description %>
-  </div>
+    <div data-controller="read-more">
+      <%# La classe "line-clamp" limite le texte à 3 lignes (besoin de Tailwind ou CSS) %>
+      <div data-read-more-target="content" class="description-text">
+        <%= @game.description %>
+      </div>
 
-  <button data-action="click->read-more#toggle" data-read-more-target="button" class="read-more-btn">
-    Lire la suite...
-  </button>
-  </div>
+      <button data-action="click->read-more#toggle" data-read-more-target="button" class="read-more-btn">
+        Lire la suite...
+      </button>
+    </div>
 
     <%# 5. Section Achat %>
-    <h2>Prix indicatif</h2>
-    <div class="price">
-  <%= number_with_precision(@game.price, precision: 2) %> €
+<div class="price-container">
+  <div class="price-info">
+    <span class="price-label">PRIX INDICATIF</span>
+    <span class="price-value"><%= number_with_precision(@game.price, precision: 2) %> €</span>
+  </div>
+
+  <%= link_to "https://shop.loufoque.fr/products/", target: "_blank", class: "shop-button" do %>
+    <i class="icon-shop"></i> Voir la boutique
+  <% end %>
+</div>
 </div>
 
-
-<% if @game.video_url.present? %>
-    <h2>Découvrez les règles du jeu en vidéo</h2>
-  <div class="video-container">
-    <div class="video-wrapper">
-      <iframe
+    <% if @game.video_url.present? %>
+      <h2>Découvrez les règles du jeu en vidéo</h2>
+      <div class="video-container">
+        <div class="video-wrapper">
+          <iframe
         src="<%= @game.video_url %>"
         frameborder="0"
         allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-<% end %>
+          </iframe>
+        </div>
+      </div>
+    <% end %>
 
     <h2>Jeux similaires</h2>
     <div class="games-grid">
-        <% @similar_games.each do |game| %>
-          <%= render "games/game_card", game: game, show_add_btn: true %>
-        <% end %>
+      <% @similar_games.each do |game| %>
+        <%= render "games/game_card", game: game, show_add_btn: true %>
+      <% end %>
     </div>
   </div>
 
