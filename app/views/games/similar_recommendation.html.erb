@@ -10,11 +10,12 @@
 
     <div class="reco-results__grid">
       <div class="games-grid">
-      <% @recommended_games.each do |game| %>
-        <%= render "game_card", game: game, show_add_btn: true %>
-      <% end %>
-      </div>
+        <% @similar_games.each do |game| %>
+          <%= render "games/game_card", game: game, show_add_btn: true %>
+        <% end %>
     </div>
+  </div>
+
 
     <%= link_to recommendation_form_games_path, class: "reco-results__retry" do %>
       🔄 &nbsp; Refaire le questionnaire

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     collection do
       get  :recommendation_form
       post :recommendation
+      get :similar_recommendation
     end
   end
 

@@ -34,7 +34,7 @@
         <p class="modal-card__message">Ce jeu sera retiré de la collection.</p>
         <div class="modal-card__actions">
           <button class="modal-card__cancel" data-action="click->modal#close">Annuler</button>
-          <%= link_to collection_game_path(CollectionGame.find_by(collection: @current_collection, game: game)),
+          <%= link_to collection_game_path(CollectionGame.find_by(collection: current_collection, game: game)),
             data: { turbo_method: :delete },
             class: "modal-card__confirm" do %>
             Retirer

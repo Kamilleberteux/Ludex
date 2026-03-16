@@ -1,3 +1,4 @@
+<div data-controller="similar">
 <%= form_with url: recommendation_games_path, method: :post,
   class: "reco-form",
   data: { controller: "recommendation", turbo_cache: false } do %>
@@ -12,7 +13,7 @@
     <input type="hidden" name="budget" value="">
 
     <%# Étape 1 : Intention %>
-    <div data-recommendation-target="step" class="reco-step">
+    <div data-recommendation-target="step" data-similar-target="step" class="reco-step">
       <div class="reco-step__top">
         <div class="reco-step__progress-track">
           <div class="reco-step__progress-fill" style="width: 14%"></div>
@@ -22,7 +23,7 @@
       </div>
       <div class="reco-step__bottom">
         <button type="button" class="reco-btn"
-                data-action="click->recommendation#answer"
+                data-action="click->similar#answer"
                 data-name="intent" data-value="similar">
           <span class="reco-btn__icon">🔍</span>
           Trouver un jeu similaire à un autre
@@ -36,7 +37,7 @@
       </div>
     </div>
 
-    <%# Étape 2 : Nombre de joueurs %>
+<!-- Étape 2 : Nombre de joueurs %> -->
     <div data-recommendation-target="step" class="reco-step">
       <div class="reco-step__top">
         <button type="button" class="reco-step__back" data-action="click->recommendation#back">
@@ -220,5 +221,63 @@
         </button>
       </div>
     </div>
-
 <% end %>
+
+
+    <!-- Etape : Similar -->
+    <div class="position">
+        <%= form_with url: recommendation_form_games_path, method: :get, class: "reco-form",
+          data: { turbo_cache: false, turbo_frame: "game_results" } do |f| %>
+   <div data-similar-target="step" class="reco-step">
+      <div class="reco-step__top">
+        <button type="button" class="reco-step__back" data-action="click->similar#back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+          </svg>
+        </button>
+        <div class="reco-step__progress-track">
+          <div class="reco-step__progress-fill" style="width: 50%"></div>
+        </div>
+        <p class="reco-step__counter">1 / 2</p>
+        <h2 class="reco-step__question">Indique nous ton jeu</h2>
+      </div>
+        <div class="reco-step__bottom_similar">
+
+    <div class="games-index__search">
+      <div class="search-form__input-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="search-form__icon">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+        <%= f.text_field :query, value: params[:query], placeholder: "Rechercher un jeu...", class: "search-form__input",
+            data: { action: "input->similar#search" } %>
+        <div class="search-form__right-actions">
+          <% if params[:query].present? %>
+            <%= link_to games_path, class: "search-form__clear" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+    </div>
+          <turbo-frame id="game_results">
+            <% if @games %>
+              <div class="games-reco-list">
+
+                <% @games.each do |g| %>
+                  <%# if g != nil %>
+                    <%= link_to similar_recommendation_games_path(game_id: g), class:"items-reco-list", data: { turbo_frame: "_top" } do %>
+                      <%= image_tag g.image_url_1, class:"reco-list-image" %>
+                      <%= g.name %>
+                    <% end %>
+                  <%# end %>
+                <% end %>
+              </div>
+            <% end %>
+          </turbo-frame>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

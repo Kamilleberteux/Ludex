@@ -1,5 +1,5 @@
 <div class="title-and-tabs">
-  
+
 <h1 class="page-title">Mes Collections</h1>
 <%# Barre de navigation (les tabs horizontaux) %>
 <div class="collections-scroll-container">
@@ -14,7 +14,7 @@
   <% if @games.any? %>
     <% @games.each do |game| %>
       <%# On appelle ta partial en lui passant la variable 'game' %>
-      <%= render "games/game_card", game: game, collection_game: @game_collection, show_delete_btn: true %>
+      <%= render "games/game_card", game: game, collection_game: @game_collection, current_collection: @current_collection, show_delete_btn: true %>
     <% end %>
   <% else %>
     <p class="empty-msg">Aucun jeu dans cette collection.</p>

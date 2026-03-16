@@ -1,5 +1,14 @@
 class GamesController < ApplicationController
   def recommendation_form
+    if params[:query].present?
+      @games = Game.where("name ILIKE ?", "%#{params[:query]}%")
+    end
+  end
+
+  def similar_recommendation
+    @game = Game.find(params[:game_id])
+    @similar_games = Game.nearest_neighbors(:embedding, @game.embedding, distance: "euclidean").first(5)
+    @similar_games.shift
   end
 
   def recommendation
@@ -68,6 +77,12 @@ class GamesController < ApplicationController
 
     @recommended_games += Game.where.not(id: @recommended_games.map(&:id))
                               .order("RANDOM()").limit(3 - @recommended_games.size).to_a
+
+    if params[:query].present?
+      @games = @games.where("name ILIKE ? OR description ILIKE ?", "%#{params[:query]}%",
+      "%#{params[:query]}%")
+    end
+
   end
 
   def show
