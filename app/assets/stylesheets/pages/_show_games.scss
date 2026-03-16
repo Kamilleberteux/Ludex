@@ -22,7 +22,7 @@
   border-radius: 20px;
   font-weight: 600;
   margin-top: -20px;
-  font-size-adjust: 0.6;
+  font-size-adjust: 0.5;
 }
 
 .buy-box {
@@ -35,7 +35,24 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.price { font-size: 20px; font-weight: bold; }
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;        /* Aligne verticalement au centre */
+  justify-content: space-between; /* Pousse les éléments aux extrémités */
+  padding: 10px 0;
+ }
+
+ .shop-link {
+  /* Le bouton sera automatiquement poussé à droite grâce au space-between */
+  background-color: #00d1b2; /* Ton vert actif */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
 
 .swiper {
   width: 100%;
@@ -51,7 +68,7 @@
 
 /* Pagination en bas de l'image comme sur ton screenshot */
 .swiper-pagination-bullet {
-  background: #ffffff;
+  background: black;
   width: 8px;
   height: 8px;
   margin: 0 4px;
@@ -76,14 +93,9 @@
 
 h2 {
   margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5rem;
   font-size: 1.5rem;
   text-align: left;
-}
-
-p {
-  font-size: 1rem;
-  text-align: justify;
 }
 
 .game-show-overlay {
@@ -131,32 +143,28 @@ p {
   border-radius: 12px;
 }
 
+.game-show-title-container {
+  display: flex;
+  justify-content: center; /* Centre la bulle */
+  margin-top: -30px;       /* Remonte la bulle pour qu'elle chevauche le bas du swiper */
+  position: relative;
+  z-index: 10;             /* S'assure qu'elle passe au-dessus du carrousel */
+}
+
 .game-bubble-title {
-  position: absolute;
-  bottom: 15px; /* Décolle la bulle du bas de l'image */
-  left: 50%;    /* Place le point de départ au centre */
-  transform: translateX(-50%); /* Décale la bulle vers la gauche de la moitié de sa propre largeur */
-
-  /* Look de la bulle */
-  background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
-  padding: 6px 16px;
-  border-radius: 50px; /* C'est ce qui donne l'effet arrondi (bulle) */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Petite ombre portée pour le relief */
-
-  /* Texte */
-  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  background-color: white; /* Ou ta couleur préférée */
+  padding: 10px 25px;
+  border-radius: 50px;     /* Forme de bulle/pilule */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* Une ombre douce pour le relief */
+  font-weight: bold;
+  font-size: 0.9rem;
   color: #333;
-  font-weight: 600;
-  font-size: 1.5rem;
-
-  max-width: 85%;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .video-container {
-  margin-top: 40px;
+  margin-top: 15px;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .video-wrapper {
@@ -178,9 +186,53 @@ p {
 h2 {
   margin-top: 20px;
   margin-bottom: 10px;
-  font-size: 1.25rem;
+  padding-bottom: 10px;
+  font-size: 1.15rem;
+  font-weight: bold;
 }
 
 .text-bold {
-  font-weight: bold; /* ou font-weight: 700; */
+  font-weight: bold;
+}
+
+.price-container {
+  display: flex;
+  justify-content: space-between; /* Pousse les éléments aux extrémités */
+  align-items: center;            /* Centre verticalement */
+  padding: 10px 20px;
+  background-color: #fff;         /* Fond blanc */
+  border: 1px solid #eee;         /* Bordure fine */
+  border-radius: 16px;            /* Coins arrondis */
+  margin-top: 15px;
+  margin-bottom: 35px;
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;         /* Empile le texte et le chiffre */
+}
+
+.price-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #aaa;                    /* Gris clair */
+  letter-spacing: 0.5px;
+}
+
+.price-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #333;
+}
+
+.shop-button {
+  background-color: #557555;      /* Vert forêt */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;                       /* Espace entre icône et texte */
 }
