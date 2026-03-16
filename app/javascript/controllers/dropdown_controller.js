@@ -18,6 +18,7 @@ export default class extends Controller {
 
     const btn = this.addBtnTarget
     btn.innerHTML = '<i class="fa-solid fa-check"></i>'
+    btn.classList.add("green-bg-add-btn")
     this.close()
 
     fetch(event.target.action, {
@@ -29,6 +30,7 @@ export default class extends Controller {
 
     setTimeout(() => {
       btn.textContent = "+"
-    }, 3000)
+      btn.classList.remove("green-bg-add-btn")
+    }, 2000)
   }
 }

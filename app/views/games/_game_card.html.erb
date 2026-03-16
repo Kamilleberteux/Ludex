@@ -7,6 +7,10 @@
     </div>
   <% end %>
 
+<!-- ---------------------------
+Button to add a game to a collection
+---------------------------- -->
+
   <% if local_assigns[:show_add_btn] && user_signed_in? %>
     <div class="dropdown">
       <button class="game-card__add-btn" type="button" data-action="click->dropdown#toggle" data-dropdown-target="addBtn">+</button>
@@ -24,6 +28,9 @@
     </div>
   <% end %>
 
+<!-- ---------------------------
+Button to delete a game from a collection (only on collection show)
+---------------------------- -->
   <% if local_assigns[:show_delete_btn] && user_signed_in? %>
     <button class="game-card__delete-btn" type="button" data-action="click->modal#open">
       <i class="fa-solid fa-trash"></i>
@@ -44,6 +51,9 @@
     </div>
   <% end %>
 
+<!-- ---------------------------
+Card itself
+---------------------------- -->
   <div class="game-card__body">
     <%= link_to game_path(game), class: "game-card__title-link" do %>
       <h3 class="game-card__title"><%= game.name %></h3>

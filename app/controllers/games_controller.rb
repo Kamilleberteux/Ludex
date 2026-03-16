@@ -107,7 +107,7 @@ class GamesController < ApplicationController
     @play_time_options  = Game.distinct.order(:play_time_minutes).pluck(:play_time_minutes).compact
     filter_keys = %i[theme nb_players age_player max_price sort level cooperative play_time_minutes]
     @active_filters = filter_keys.count { |k| params[k].present? }
-
+    @games_count = @games.count
     @pagy, @games = pagy(
       @games,
       items: 6
