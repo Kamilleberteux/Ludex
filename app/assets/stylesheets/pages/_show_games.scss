@@ -93,7 +93,7 @@
 
 h2 {
   margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5rem;
   font-size: 1.5rem;
   text-align: left;
 }
@@ -162,8 +162,9 @@ h2 {
 }
 
 .video-container {
-  margin-top: 40px;
+  margin-top: 15px;
   width: 100%;
+  margin-bottom: 30px;
 }
 
 .video-wrapper {
@@ -185,6 +186,7 @@ h2 {
 h2 {
   margin-top: 20px;
   margin-bottom: 10px;
+  padding-bottom: 10px;
   font-size: 1.15rem;
   font-weight: bold;
 }
@@ -202,6 +204,7 @@ h2 {
   border: 1px solid #eee;         /* Bordure fine */
   border-radius: 16px;            /* Coins arrondis */
   margin-top: 15px;
+  margin-bottom: 35px;
 }
 
 .price-info {
@@ -233,5 +236,3 @@ h2 {
   align-items: center;
   gap: 8px;                       /* Espace entre icône et texte */
 }
-
-

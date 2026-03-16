@@ -13,15 +13,11 @@
   <div class="swiper-pagination"></div>
 </div>
 
-<%# 2. Le titre est maintenant en dessous, en dehors du swiper %>
-<div class="game-show-title-container">
-  <div class="game-bubble-title">
-    <span><%= @game.name %></span>
-  </div>
+
 </div>
 
-
   <div class="game-content">
+  <h2><%= @game.name %></h2>
     <%# 2. Tag catégorie %><div class="category-tag">
       <i class="fa-solid fa-puzzle-piece"></i><% if @game.theme.present? %> <%= @game.theme.capitalize %>
       <% else %> Mystère
