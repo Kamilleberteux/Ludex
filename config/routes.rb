@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "maps/index"
   devise_for :users, controllers: { registrations: "users/registrations" }
   resources :users, only: [:show, :edit, :update]
   root to: "pages#home"
@@ -29,4 +30,6 @@ Rails.application.routes.draw do
   end
 
   resources :collection_games, only: [:destroy]
+
+  get "/map", to: "maps#index"
 end
