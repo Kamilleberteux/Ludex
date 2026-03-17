@@ -27,6 +27,14 @@
                     required: true,
                     input_html: { autocomplete: "new-password" },
                     label: "Confirmation du mot de passe" %>
+        <div class="field-group" style="text-align: center;">
+          <%= f.file_field :profile_photo, class: "d-none", accept: "image/*", id: "signup-photo-upload"%>
+            <label for="signup-photo-upload" class="btn-upload-photo">
+                  <i class="fas fa-camera me-2"></i>Choisir une photo
+                </label>
+              <br>
+            <span id="signup-photo-name" class="upload-filename">Aucun fichier choisi</span>
+        </div>
       </div>
 
       <div class="form-actions">
@@ -38,4 +46,10 @@
       <%= render "devise/shared/links" %>
     </div>
   </div>
+  <script>
+    document.getElementById("signup-photo-upload").addEventListener("change", function() {
+      const filename = this.files[0] ? this.files[0].name : "Aucun fichier choisi";
+      document.getElementById("signup-photo-name").textContent = filename;
+    });
+  </script>
 </div>
