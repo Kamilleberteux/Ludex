@@ -142,7 +142,7 @@ $reco-green: $ludex-green;
 // ── Page résultats ───────────────────────────────────────
 .reco-results {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: white;
   font-family: $body-font;
 }
 
@@ -265,7 +265,7 @@ $reco-green: $ludex-green;
 }
 
 .reco-step__bottom_similar {
-background: white;
+background:  $light-gray;
 border-radius: 24px 24px 0 0;
 margin-top: -24px;
 flex: 1;
