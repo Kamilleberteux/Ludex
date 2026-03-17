@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   get "maps/index"
   devise_for :users, controllers: { registrations: "users/registrations" }
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      delete :remove_photo
+    end
+  end
   root to: "pages#home"
 
   get "up" => "rails/health#show", as: :rails_health_check
