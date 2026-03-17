@@ -26,12 +26,12 @@
   font-weight: 500;
 
   svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
   }
 
   &:hover,
   &.active {
-    color: #000;
+    color: $ludex-green;
   }
 }
