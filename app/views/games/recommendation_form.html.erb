@@ -243,7 +243,7 @@
       </div>
         <div class="reco-step__bottom_similar">
 
-    <div class="games-index__search">
+    <div class="reco-list-search">
       <div class="search-form__input-wrapper">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="search-form__icon">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -260,22 +260,22 @@
           <% end %>
       </div>
     </div>
-    </div>
           <turbo-frame id="game_results">
             <% if @games %>
               <div class="games-reco-list">
 
                 <% @games.each do |g| %>
-                  <%# if g != nil %>
+                  <%# if g&.id != nil %>
                     <%= link_to similar_recommendation_games_path(game_id: g), class:"items-reco-list", data: { turbo_frame: "_top" } do %>
-                      <%= image_tag g.image_url_1, class:"reco-list-image" %>
-                      <%= g.name %>
+                      <%= image_tag g.image_url_1.presence || 'game-box.png', class:"reco-list-image" %>
+                      <div class="reco-list-text"><%= g.name %></div>
                     <% end %>
                   <%# end %>
                 <% end %>
               </div>
             <% end %>
           </turbo-frame>
+    </div>
         </div>
       </div>
     <% end %>
