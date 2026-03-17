@@ -68,7 +68,7 @@
 
 /* Pagination en bas de l'image comme sur ton screenshot */
 .swiper-pagination-bullet {
-  background: black;
+  background: white;
   width: 8px;
   height: 8px;
   margin: 0 4px;
@@ -151,16 +151,6 @@ h2 {
   z-index: 10;             /* S'assure qu'elle passe au-dessus du carrousel */
 }
 
-.game-bubble-title {
-  background-color: white; /* Ou ta couleur préférée */
-  padding: 10px 25px;
-  border-radius: 50px;     /* Forme de bulle/pilule */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* Une ombre douce pour le relief */
-  font-weight: bold;
-  font-size: 0.9rem;
-  color: #333;
-}
-
 .video-container {
   margin-top: 15px;
   width: 100%;
@@ -226,7 +216,7 @@ h2 {
 }
 
 .shop-button {
-  background-color: #557555;      /* Vert forêt */
+  background-color: $ludex-green;
   color: white;
   padding: 12px 20px;
   border-radius: 12px;
@@ -235,4 +225,99 @@ h2 {
   display: flex;
   align-items: center;
   gap: 8px;                       /* Espace entre icône et texte */
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.game-carousel-container {
+  position: relative; /* Définit la zone de référence pour le bouton */
+  width: 100%;
+}
+
+.game-card__add-btn {
+  position: absolute;
+  top: 15px;           /* Distance du haut */
+  right: 15px;
+   width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: $ludex-green;
+    font-size: 22px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    padding: 0 0 2px 0;
+    z-index: 10;
+}
+
+.game-card__add-btn:active {
+        background: #fff;
+      transform: scale(0.93); /* Petit effet de clic sympa */
+}
+
+/* On s'assure que le menu s'affiche bien à droite */
+.dropdown__menu {
+position: absolute;
+  right: 0;
+  top: 45px;
+  background: white;
+  z-index: 9999;
+  &__menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    overflow: hidden;
+    padding: 6px 0;
+
+    &--open {
+      display: block;
+    }
+  }
+
+  &__label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 14px 4px;
+    margin: 0;
+  }
+
+  &__item {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1a1a1a;
+    cursor: pointer;
+
+    &:hover, &:active {
+      background: $light-gray;
+    }
+  }
+}
+
+.game-show-container, .games-grid-wrapper {
+  background-color: #ffffff !important;
+  
 }
