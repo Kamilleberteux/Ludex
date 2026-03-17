@@ -10,7 +10,7 @@
         <i class="fa-regular fa-user"></i>
       <% end %>
     <% end %>
-    
+
   </header>
 
   <!-- Greeting -->
@@ -54,7 +54,7 @@
       <h2 class="home__section-title">Mes collections</h2>
     </div>
     <div class="home__collections">
-      <% collection_icons = { "Déjà joué" => "✅", "Mes jeux" => "🏠", "Wishlist" => "⭐" } %>
+      <% collection_icons = { "Déjà joué" => "👍🏼", "Mes jeux" => "🏡", "Wishlist" => "🎁" } %>
       <% collection_labels = { "Déjà joué" => "Played", "Mes jeux" => "Owned", "Wishlist" => "Wishlist" } %>
       <% @collections.each do |collection| %>
         <%= link_to collection_path(collection), class: "home__collection-card" do %>
