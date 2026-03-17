@@ -1,6 +1,7 @@
 let currentMarkers = [];
 let allPlaces = [];
 let allMarkersData = [];
+let suppressNextIdle = false;
 
 function clearMarkers() {
   currentMarkers.forEach(marker => marker.setMap(null));
@@ -16,11 +17,6 @@ function filterResultsByBounds(map) {
     bounds.contains(marker.getPosition())
   );
   renderResults(visible.map(d => d.place));
-}
-
-function priceLevel(level) {
-  if (level == null) return "";
-  return "€".repeat(level) || "€";
 }
 
 function expandCard(placeId) {
@@ -96,7 +92,7 @@ function searchNearbyBarsAJeu(map, location) {
   clearMarkers();
   const service = new google.maps.places.PlacesService(map);
   const latLng = new google.maps.LatLng(location.lat, location.lng);
-  const keywords = ["bar à jeu", "bar à jeux", "ludothèque", "café jeux"];
+  const keywords = ["bar à jeu", "bar à jeux", "café jeux"];
 
   Promise.all(keywords.map(keyword =>
     nearbySearchPromise(service, { keyword, location: latLng, radius: 8000 })
@@ -172,6 +168,7 @@ function searchNearbyBarsAJeu(map, location) {
         document.addEventListener("click", (e) => {
           const item = e.target.closest(`[data-place-id="${place.place_id}"]`);
           if (item) {
+            suppressNextIdle = true;
             map.panTo(place.geometry.location);
             map.setZoom(15);
             expandCard(place.place_id);
@@ -200,8 +197,9 @@ function initMap() {
     ],
   });
 
-  // Re-filter list when map is panned/zoomed
+  // Re-filter list when map is panned/zoomed (but not when triggered by a card click)
   map.addListener("idle", () => {
+    if (suppressNextIdle) { suppressNextIdle = false; return; }
     if (allMarkersData.length > 0) filterResultsByBounds(map);
   });
 

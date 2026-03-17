@@ -89,7 +89,7 @@ $reco-green: #3A5C3A;
 
 // ── Zone blanche (réponses) ──────────────────────────────
 .reco-step__bottom {
-  background: white;
+  background: $light-gray;
   border-radius: 24px 24px 0 0;
   margin-top: -24px;
   flex: 1;
@@ -101,7 +101,7 @@ $reco-green: #3A5C3A;
 
 // ── Boutons de réponse ───────────────────────────────────
 .reco-btn {
-  background: $ludex-light;
+  background: white;
   border: 2px solid transparent;
   border-radius: 16px;
   padding: 18px 20px;
