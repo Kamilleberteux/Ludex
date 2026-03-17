@@ -4,8 +4,13 @@
   <header class="home__header">
     <span class="home__header-logo"><%= image_tag "Lu.png" %></span>
     <%= link_to user_path(current_user), class: "home__header-profil" do %>
-      <i class="fa-regular fa-user"></i>
+      <% if current_user.profile_photo_url.present? %>
+        <%= image_tag current_user.profile_photo_url, class: "home__header-avatar" %>
+      <% else %>
+        <i class="fa-regular fa-user"></i>
+      <% end %>
     <% end %>
+    
   </header>
 
   <!-- Greeting -->
