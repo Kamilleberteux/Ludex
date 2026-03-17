@@ -27,5 +27,12 @@ class Game < ApplicationRecord
     update!(embedding: self.class.embed("#{name} - #{description} - #{nb_players} - #{play_time_minutes}"))
   end
 
+  def has_correct_url
+    # Vérifie si le nom du jeu correspond à une URL valide sur la boutique
+    shop_url = "https://shop.loufoque.fr/products/#{name.parameterize}"
+    response = Faraday.get(shop_url)
+    response.status == 200
+  end
+
 
 end

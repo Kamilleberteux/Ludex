@@ -229,6 +229,9 @@
     display: flex;
     align-items: center;
     padding: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
 
     &:hover {
       color: #333;
@@ -265,7 +268,7 @@
   flex-direction: column;
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 
   &__image-link {
     display: block;
@@ -443,4 +446,8 @@
       background: $light-gray;
     }
   }
+}
+
+.green-bg-add-btn {
+  background-color: #d3e5d9 !important;
 }
