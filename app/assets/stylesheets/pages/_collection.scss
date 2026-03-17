@@ -12,7 +12,7 @@
 .collection-tab {
   padding: 8px 16px;
   background-color: #f0f0f0;
-  border-radius: px; /* Effet "pill" très mobile */
+  border-radius: 15px; /* Effet "pill" très mobile */
   text-decoration: none;
   color: #333;
   transition: all 0.3s ease;
@@ -28,8 +28,8 @@
 }
 
 .collection-tab.active {
-  background-color: #ffffff; /* Fond vert */
-  color: $ludex-green;           /* Texte blanc */
+  background-color: #ffffff; /* Fond blanc */
+  color: $ludex-green;           /* Texte vert */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
@@ -79,9 +79,11 @@
   text-align: left;
   font-size: 22px;        /* Assez grand mais pas encombrant */
   line-height: 0.9;       /* Évite que les lignes se collent */
-  color: black;
+  color: $ludex-green;
   margin-left: 1rem;
   padding-top: 35px;
+  -webkit-text-stroke: 0.3px black;
+
 }
 
 .title-and-tabs {
