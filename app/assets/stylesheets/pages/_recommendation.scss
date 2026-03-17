@@ -1,4 +1,4 @@
-$reco-green: #3A5C3A;
+$reco-green: $ludex-green;
 
 // ── Layout global ────────────────────────────────────────
 .reco-form {
@@ -218,27 +218,51 @@ $reco-green: #3A5C3A;
   }
 }
 
+.reco-list-search {
+  position: relative;
+  margin-bottom: 0;
+
+  .search-form__input-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+}
+
 .games-reco-list {
   position: absolute;
- list-style: none;
+  top: 20px;
+  z-index: 1;
+  list-style: none;
   border-radius: 0 0 16px 16px;
   background: #fff;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding-left: 28px;
+  padding-top: 35px;
 }
 
 .reco-list-image{
-    height: 70px;
-    margin-right: 10px;
-  }
+  height: 70px;
+  margin-right: 10px;
+}
 
 .items-reco-list {
-    width: 90%;
-    display: flex;
-    padding: 10px;
-    border-bottom: solid;
-    border-color: #e0dede;
-    border-bottom-width: 0.1px;
-  }
+  width: 90%;
+  display: flex;
+  padding: 10px;
+  border-bottom: solid;
+  border-color: #e0dede;
+  border-bottom-width: 0.1px;
+  color: black;
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+.reco-list-text {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .reco-step__bottom_similar {
 background: white;
