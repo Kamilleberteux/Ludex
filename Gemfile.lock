@@ -126,7 +126,7 @@ GEM
     debug (1.11.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    devise (5.0.2)
+    devise (5.0.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 7.0)
@@ -343,8 +343,9 @@ GEM
     rake-compiler-dock (1.11.0)
     rb_sys (0.9.124)
       rake-compiler-dock (= 1.11.0)
-    rbs (3.10.3)
+    rbs (4.0.0)
       logger
+      prism (>= 1.6.0)
       tsort
     rdoc (7.2.0)
       erb
@@ -571,7 +572,7 @@ CHECKSUMS
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
   debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6
-  devise (5.0.2) sha256=254330c9290e612ad9681e8a18c96aa21fb95bc391af936b84480965444bb0b6
+  devise (5.0.3) sha256=c4c065051cdc4ace11547b2b7f5c3c4c97d0f1269250f5fe90f614ff78f29546
   dotenv (3.2.0) sha256=e375b83121ea7ca4ce20f214740076129ab8514cd81378161f11c03853fe619d
   dotenv-rails (3.2.0) sha256=657e25554ba622ffc95d8c4f1670286510f47f2edda9f68293c3f661b303beab
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
@@ -674,7 +675,7 @@ CHECKSUMS
   rake (13.3.1) sha256=8c9e89d09f66a26a01264e7e3480ec0607f0c497a861ef16063604b1b08eb19c
   rake-compiler-dock (1.11.0) sha256=eab51f2cd533eb35cea6b624a75281f047123e70a64c58b607471bb49428f8c2
   rb_sys (0.9.124) sha256=513476557b12eaf73764b3da9f8746024558fe8699bda785fb548c9aa3877ae7
-  rbs (3.10.3) sha256=70627f3919016134d554e6c99195552ae3ef6020fe034c8e983facc9c192daa6
+  rbs (4.0.0) sha256=b700e75a8ea721a66b94c4e3af7df26d1e61a786d1205d0b8de93828718c4771
   rdoc (7.2.0) sha256=8650f76cd4009c3b54955eb5d7e3a075c60a57276766ebf36f9085e8c9f23192
   regexp_parser (2.11.3) sha256=ca13f381a173b7a93450e53459075c9b76a10433caadcb2f1180f2c741fc55a4
   reline (0.6.3) sha256=1198b04973565b36ec0f11542ab3f5cfeeec34823f4e54cebde90968092b1835

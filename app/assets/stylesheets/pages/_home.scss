@@ -167,6 +167,11 @@
   font-weight: 700;
   color: #1a1a1a;
   margin: 0;
+  font-weight: bold;
+  text-align: left;
+  line-height: 0.9;       /* Évite que les lignes se collent */
+  color: $ludex-green;
+  -webkit-text-stroke: 0.3px black;
 }
 
 .home__section-link {

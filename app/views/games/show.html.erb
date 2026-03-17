@@ -60,13 +60,12 @@
         <span class="text-bold"><%= @game.play_time_minutes %></span><br><span>DURÉE</span>
       </div>
       <div class="info-card">
-        ⚔️<br>
         <i class="icon-sword"></i>
         <span class="text-bold">
         <% if @game.is_cooperative? %>
-          Cooperatif
+         🤝 Cooperatif
         <% else %>
-          Compétitif
+         ⚔️ Compétitif
         <% end %></span>
 
         <br>
@@ -76,13 +75,13 @@
         <i class="icon-cap"></i>
         <span class="text-bold">
           <% if @game.level == "Enfant" %>
-            🧒 <br>Enfant
+            🎈 <br>Enfant
           <% elsif @game.level == "Familial" %>
             👨‍👩‍👧‍👦 <br>Familial
           <% elsif @game.level == "Initié" %>
             🧠 <br>Initié
         <% elsif @game.level == "Expert" %>
-          💀 <br>Expert
+            💀 <br>Expert
         <% end %></span>
         <br><span>NIVEAU</span>
       </div>

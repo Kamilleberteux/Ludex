@@ -55,7 +55,7 @@
     </div>
     <div class="home__collections">
       <% collection_icons = { "Déjà joué" => "👍🏼", "Mes jeux" => "🏡", "Wishlist" => "🎁" } %>
-      <% collection_labels = { "Déjà joué" => "Played", "Mes jeux" => "Owned", "Wishlist" => "Wishlist" } %>
+      <% collection_labels = { "Déjà joué" => "Déjà joué", "Mes jeux" => "Mes jeux", "Wishlist" => "Wishlist" } %>
       <% @collections.each do |collection| %>
         <%= link_to collection_path(collection), class: "home__collection-card" do %>
           <span class="home__collection-icon"><%= collection_icons[collection.name] || "📦" %></span>
