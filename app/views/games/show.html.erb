@@ -4,7 +4,7 @@
 
     <%# 1. Le bouton dropdown (fixe) %>
   <div class="dropdown game-add-dropdown" data-controller="dropdown">
-  <button class="game-card__add-btn" type="button" data-action="click->dropdown#toggle" data-dropdown-target="addBtn">+</button>
+  <button class="game-card__add-btn1" type="button" data-action="click->dropdown#toggle" data-dropdown-target="addBtn">+</button>
 
   <div class="dropdown__menu" data-dropdown-target="menu">
     <p class="dropdown__label">Ajouter à...</p>
@@ -40,11 +40,12 @@
 
   <div class="game-content">
   <h1><%= @game.name %></h1>
-    <%# 2. Tag catégorie %><div class="category-tag">
-      <i class="fa-solid fa-puzzle-piece"></i><% if @game.theme.present? %> <%= @game.theme.capitalize %>
-      <% else %> Mystère
-      <% end %>
-    </div>
+   <% if @game.theme.present? %>
+  <div class="category-tag">
+    <i class="fa-solid fa-puzzle-piece"></i>
+    <%= @game.theme.capitalize %>
+  </div>
+<% end %>
 
     <%# 3. Grille d'infos (Les 4 petits carrés) %>
     <div class="info-grid">
@@ -101,6 +102,7 @@
     </div>
 
     <%# 5. Section Achat %>
+    <h2>Où l'acheter</h2>
   <div class="price-container">
     <div class="price-info">
       <span class="price-label">PRIX INDICATIF</span>

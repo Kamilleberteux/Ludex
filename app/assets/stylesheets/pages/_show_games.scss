@@ -18,40 +18,12 @@
   background: rgb(221, 219, 219);
   color: $ludex-green;
   display: inline-block;
-  padding: 5px 15px;
+  padding: 5px 10px;
   border-radius: 20px;
   font-weight: 600;
   margin-top: -20px;
   font-size-adjust: 0.5;
-}
-
-.buy-box {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.price {
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;        /* Aligne verticalement au centre */
-  justify-content: space-between; /* Pousse les éléments aux extrémités */
-  padding: 10px 0;
- }
-
- .shop-link {
-  /* Le bouton sera automatiquement poussé à droite grâce au space-between */
-  background-color: #00d1b2; /* Ton vert actif */
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
+  font-size: 15px;
 }
 
 .swiper {
@@ -88,10 +60,11 @@
 }
 
 .game-content {
-  margin: 1.5rem;
+  margin: 1rem;
 }
 
 h2 {
+  padding-top: 10px;
   margin-top: 1.5rem;
   margin-bottom: 5rem;
   font-size: 1.5rem;
@@ -143,14 +116,6 @@ h2 {
   border-radius: 12px;
 }
 
-.game-show-title-container {
-  display: flex;
-  justify-content: center; /* Centre la bulle */
-  margin-top: -30px;       /* Remonte la bulle pour qu'elle chevauche le bas du swiper */
-  position: relative;
-  z-index: 10;             /* S'assure qu'elle passe au-dessus du carrousel */
-}
-
 .video-container {
   margin-top: 15px;
   width: 100%;
@@ -176,6 +141,7 @@ h2 {
 h2 {
   margin-top: 20px;
   margin-bottom: 10px;
+  padding-top: 0px;
   padding-bottom: 10px;
   font-size: 1.15rem;
   font-weight: bold;
@@ -194,7 +160,7 @@ h2 {
   border: 1px solid #eee;         /* Bordure fine */
   border-radius: 16px;            /* Coins arrondis */
   margin-top: 15px;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 
 .price-info {
@@ -218,7 +184,7 @@ h2 {
 .shop-button {
   background-color: $ludex-green;
   color: white;
-  padding: 12px 20px;
+  padding: 12px 10px;
   border-radius: 12px;
   text-decoration: none;
   font-weight: 600;
@@ -239,7 +205,7 @@ h1 {
   width: 100%;
 }
 
-.game-card__add-btn {
+.game-card__add-btn1 {
   position: absolute;
   top: 15px;           /* Distance du haut */
   right: 15px;
@@ -261,8 +227,8 @@ h1 {
 }
 
 .game-card__add-btn:active {
-        background: #fff;
-      transform: scale(0.93); /* Petit effet de clic sympa */
+  background: #fff;
+  transform: scale(0.93); /* Petit effet de clic sympa */
 }
 
 /* On s'assure que le menu s'affiche bien à droite */
@@ -319,5 +285,5 @@ position: absolute;
 
 .game-show-container, .games-grid-wrapper {
   background-color: #ffffff !important;
-  
+
 }
