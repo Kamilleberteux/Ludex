@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get "maps/index"
   devise_for :users, controllers: { registrations: "users/registrations" }
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resources :friendships, only: [:create]
+  end
   root to: "pages#home"
 
   get "up" => "rails/health#show", as: :rails_health_check
@@ -22,11 +24,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :friendships, only: [:destroy, :index]
+
   resources :collections do
     member do
       post 'add_game/:game_id', to: 'collections#add_game', as: :add_game
       # Ajoute cette ligne pour la suppression :
-      delete 'remove_game/:game_id', to: 'collections#remove_game', as: :remove_game
+      delete 'remove_game/:game_id', to: 'collections#remove_game', as: :remove_game5
     end
   end
 

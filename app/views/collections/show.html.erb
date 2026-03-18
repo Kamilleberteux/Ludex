@@ -1,24 +1,33 @@
 <div class="title-and-tabs">
-
-<h1 class="page-title">Mes Collections</h1>
-<%# Barre de navigation (les tabs horizontaux) %>
-<div class="collections-scroll-container">
-  <% @collections.each do |collection| %>
-    <%= link_to collection.name, collection_path(collection),
-        class: "collection-tab #{'active' if @current_collection.id == collection.id}" %>
-  <% end %>
-</div>
-
-<%# 2. Grille de jeux à 2 colonnes %>
-<div class="games-grid">
-  <% if @games.any? %>
-    <% @games.each do |game| %>
-      <%# On appelle ta partial en lui passant la variable 'game' %>
-      <%= render "games/game_card", game: game, collection_game: @game_collection, current_collection: @current_collection, show_delete_btn: true %>
+  <h1 class="page-title">
+    <% if @user == current_user %>
+      Mes Collections
+    <% else %>
+      Les collections de <%= @user.username %>
     <% end %>
-  <% else %>
-    <p class="empty-msg">Aucun jeu dans cette collection.</p>
-  <% end %>
-</div>
+  </h1>
+  <%# Barre de navigation (les tabs horizontaux) %>
+  <div class="collections-scroll-container">
+    <% @collections.each do |collection| %>
+      <%= link_to collection.name, collection_path(collection),
+        class: "collection-tab #{'active' if @current_collection.id == collection.id}" %>
+    <% end %>
+  </div>
+
+  <%# 2. Grille de jeux à 2 colonnes %>
+  <div class="games-grid">
+    <% if @games.any? %>
+      <% @games.each do |game| %>
+        <%# On appelle ta partial en lui passant la variable 'game' %>
+        <% if @user == current_user %>
+          <%= render "games/game_card", game: game, collection_game: @game_collection, current_collection: @current_collection, show_delete_btn: true %>
+        <% else %>
+          <%= render "games/game_card", game: game, collection_game: @game_collection, current_collection: @current_collection, show_add_btn: true %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p class="empty-msg">Aucun jeu dans cette collection.</p>
+    <% end %>
+  </div>
 
 </div>

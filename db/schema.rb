@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_12_170354) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_18_084646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vector"
@@ -59,6 +59,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_12_170354) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "friend_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -234,6 +241,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_12_170354) do
   add_foreign_key "collection_games", "collections"
   add_foreign_key "collection_games", "games"
   add_foreign_key "collections", "users"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

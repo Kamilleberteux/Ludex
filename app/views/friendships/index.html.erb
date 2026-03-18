@@ -1,0 +1,64 @@
+<div class="friends-page">
+
+  <div class="friends__header">
+    <h1 class="friends__title">Mes amis</h1>
+  </div>
+
+  <div class="friends__body">
+
+    <div class="friends__search-section">
+      <%= form_with url: friendships_path, method: :get, class: "friends__form",
+          data: { controller: "friendship", turbo_cache: false, turbo_frame: "game_results" } do |f| %>
+
+        <div class="friends__search-wrapper">
+          <div class="friends__input-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="friends__search-icon">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            <%= f.text_field :query, value: params[:query], placeholder: "Rechercher un utilisateur...",
+                class: "friends__search-input",
+                autocomplete: "off",
+                data: { action: "input->friendship#search" } %>
+            <% if params[:query].present? %>
+              <%= link_to friendships_path, class: "friends__search-clear" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              <% end %>
+            <% end %>
+          </div>
+
+          <turbo-frame id="game_results">
+            <% if @users&.any? %>
+              <div class="friends__results-dropdown">
+                <% @users.each do |user| %>
+                  <div class="friends__result-item search-form__clear">
+                    <turbo-frame id="_top">
+                      <%= image_tag user.profile_photo_url.presence || 'game-box.png', class: "friends__result-avatar" %>
+                      <span class="friends__result-name"><%= user.username %></span>
+                      <%= link_to "+", user_friendships_path(user_id: user.id), data: { turbo_method: :post } %>
+                    </turbo-frame>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </turbo-frame>
+        </div>
+      <% end %>
+    </div>
+<div class="friends__list">
+  <% @friendships.each do |friendship| %>
+    <div class="friend-card">
+      <%= image_tag friendship.friend.profile_photo_url.presence || 'default-user.png', class: "friends__result-avatar" %>
+      <span class="friends__result-name"><%= friendship.friend.username.capitalize %></span>
+      <%= link_to collection_path(friendship.friend.collections.first), class: "friendship-collection-btn" do %>
+        <span>Collections</span>
+      <% end %>
+      <%= link_to friendship_path(friendship), data: {turbo_method: :delete}, class: "friendship-delete-btn" do %>
+      <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+  </div>
+</div>

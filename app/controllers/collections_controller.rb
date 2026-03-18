@@ -6,9 +6,23 @@ class CollectionsController < ApplicationController
   end
 
   def show
-  @collections = current_user.collections
+  @user = Collection.find(params[:id]).user
+  @collections = @user.collections
   @current_collection = Collection.find(params[:id])
   @games = @current_collection.games
+
+  # collection_path(friendship.friend.collection.first)
+  # @user = User.find(params[:id])
+  # if @user == current_user
+  #   @collections = current_user.collections
+  #   @current_collection = Collection.find(params[:id])
+  #   @games = @current_collection.games
+  # else
+  #   @collections = @user.collections
+  #   @current_collection = Collection.find(params[:id])
+  #   @games = @current_collection.games
+  # end
+
   end
 
   def add_game
