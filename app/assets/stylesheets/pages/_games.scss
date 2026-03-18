@@ -76,7 +76,7 @@
 .filters-panel {
   display: none;
   background: #fff;
-  border: 1.5px solid #e0e0e0;
+  border: 1.7px solid $ludex-green;
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 12px;
@@ -136,7 +136,7 @@
   &__apply {
     flex: 1;
     padding: 10px;
-    background: $gray;
+    background: $ludex-green;
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -175,8 +175,8 @@
   }
 
   &--active {
-    background: $gray;
-    border-color: $gray;
+    background: $ludex-green;
+    border-color: $ludex-green;
     color: #fff;
   }
 }
@@ -186,7 +186,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    border: 1.5px solid #e0e0e0;
+    border: 1.7px solid $ludex-green;
     border-radius: 12px;
     background: $light-gray;
     transition: border-color 0.15s, background 0.15s;

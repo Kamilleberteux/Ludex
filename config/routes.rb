@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   resources :users, only: [:show, :edit, :update] do
     resources :friendships, only: [:create]
+    member do
+      delete :remove_photo
+    end
   end
   root to: "pages#home"
 

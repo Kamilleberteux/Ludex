@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:user][:profile_photo].present?
+    if params[:user]&.[](:profile_photo).present?
       result = Cloudinary::Uploader.upload(params[:user][:profile_photo].tempfile.path)
       @user.profile_photo_url = result["secure_url"]
     end
@@ -19,6 +19,11 @@ class UsersController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def remove_photo
+    @user.update_column(:profile_photo_url, nil)
+    redirect_to user_path(@user), notice: "Photo supprimée."
   end
 
   private
