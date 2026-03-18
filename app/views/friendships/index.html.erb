@@ -34,9 +34,11 @@
                 <% @users.each do |user| %>
                   <div class="friends__result-item search-form__clear">
                     <turbo-frame id="_top">
-                      <%= image_tag user.profile_photo_url.presence || 'game-box.png', class: "friends__result-avatar" %>
+                      <%= image_tag user.profile_photo_url.presence || 'default-user.png', class: "friends__result-avatar" %>
                       <span class="friends__result-name"><%= user.username %></span>
-                      <%= link_to "+", user_friendships_path(user_id: user.id), data: { turbo_method: :post } %>
+                      <%= link_to user_friendships_path(user_id: user.id), data: { turbo_method: :post }, class: "friends__add-btn" do %>
+                        +
+                      <% end %>
                     </turbo-frame>
                   </div>
                 <% end %>
