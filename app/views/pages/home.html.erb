@@ -67,6 +67,25 @@
   </section>
   <% end %>
 
+  <!-- Friends button -->
+  <% if user_signed_in? %>
+  <section class="home__section home__section--friends">
+    <div class="home__section-header">
+      <h2 class="home__section-title">Les collections de mes amis</h2>
+    </div>
+    <%= link_to friendships_path, class: "home__friends-btn" do %>
+      <span class="home__friends-btn-icon">
+        <i class="fa-solid fa-user-group"></i>
+      </span>
+      <span class="home__friends-btn-info">
+        <span class="home__friends-btn-title">Social</span>
+        <span class="home__friends-btn-sub">Voir et gérer mes amis</span>
+      </span>
+      <i class="fa-solid fa-chevron-right home__friends-btn-arrow"></i>
+    <% end %>
+  </section>
+  <% end %>
+
 <!-- Game suggestion -->
   <% if user_signed_in? && @collections.any? %>
     <section class="home__section">

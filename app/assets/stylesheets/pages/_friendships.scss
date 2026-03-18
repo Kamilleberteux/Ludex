@@ -1,0 +1,208 @@
+// ── Page layout ──────────────────────────────────────────
+.friends-page {
+  min-height: 100vh;
+  background: $light-gray;
+  font-family: $body-font;
+}
+
+// ── Green header ─────────────────────────────────────────
+.friends__header {
+  background: $ludex-green;
+  padding: 28px 20px 56px;
+}
+
+.friends__title {
+  font-family: $headers-font;
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+// ── White body ───────────────────────────────────────────
+.friends__body {
+  background: $light-gray;
+  border-radius: 24px 24px 0 0;
+  margin-top: -28px;
+  padding: 24px 16px 100px;
+}
+
+// ── Search section ───────────────────────────────────────
+.friends__search-section {
+  position: relative;
+}
+
+.friends__form {
+  position: relative;
+}
+
+.friends__search-wrapper {
+  position: relative;
+}
+
+.friends__input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  position: relative;
+  z-index: 2;
+}
+
+.friends__search-icon {
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+.friends__search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: $body-font;
+  font-size: 15px;
+  color: #1a1a1a;
+
+  &::placeholder {
+    color: #bbb;
+  }
+}
+
+.friends__search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  flex-shrink: 0;
+  text-decoration: none;
+
+  &:hover {
+    color: #555;
+  }
+}
+
+// ── Add friend button ─────────────────────────────────────
+.friends__add-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: $ludex-green;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  padding: 0 0 2px 0;
+
+  &:active {
+    background: #fff;
+    transform: scale(0.93);
+  }
+}
+
+// ── Results overlay ──────────────────────────────────────
+.friends__results-dropdown {
+  position: absolute;
+  top: calc(100% - 10px);
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  padding-top: 12px;
+  overflow: hidden;
+}
+
+.friends__result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #1a1a1a;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.1s ease;
+
+  turbo-frame {
+    display: contents;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: $light-gray;
+  }
+}
+
+.friends__result-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.friends__result-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+// ── Friends list ─────────────────────────────────────────
+.friends__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.friend-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+
+  .friends__result-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .friends__result-name {
+    font-size: 15px;
+    color: #1a1a1a;
+    flex: 1;
+  }
+
+  .friendship-delete-btn {
+    color: $ludex-green;
+    padding-right: 5px;
+    padding-left: 10px;
+  }
+  .friendship-collection-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: $ludex-green;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 5px;
+  }
+}
