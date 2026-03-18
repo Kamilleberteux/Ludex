@@ -1,7 +1,8 @@
 .profile-page {
   min-height: 100vh;
-  background-color: $ludex-light;
+  background-color: $light-gray;
   padding: 2rem 1.5rem;
+
 
   .profile-header {
     background: white;
@@ -18,6 +19,16 @@
       object-fit: cover;
       margin-bottom: 1rem;
     }
+
+    .btn-profile-delete-photo {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 0.85rem;
+      text-align: center;
+      width: 100%;
+      padding: 0.5rem;
+      }
 
     .profile-avatar-placeholder {
       width: 90px;
@@ -94,7 +105,7 @@
 
 .edit-profile-page {
   min-height: 100vh;
-  background-color: $ludex-light;
+  background-color: $light-gray;
   padding: 1.5rem;
 
   .edit-profile-header {
@@ -123,8 +134,8 @@
     margin-bottom: 2rem;
 
     .current-photo {
-      width: 90px;
-      height: 90px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 0.75rem;
@@ -146,6 +157,16 @@
       font-weight: 700;
       font-size: 0.9rem;
       cursor: pointer;
+    }
+
+    .btn-delete-photo {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 0.85rem;
+      text-align: center;
+      width: 100%;
+      padding: 0.5rem;
     }
   }
 
