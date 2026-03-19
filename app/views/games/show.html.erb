@@ -3,7 +3,7 @@
   <div class="game-carousel-container">
 
     <%# 1. Le bouton dropdown (fixe) %>
-  <div class="dropdown game-add-dropdown" data-controller="dropdown">
+  <div class="dropdown game-add-dropdown" data-controller="dropdown" data-action="click@window->dropdown#close">
   <button class="game-card__add-btn1" type="button" data-action="click->dropdown#toggle" data-dropdown-target="addBtn">+</button>
 
   <div class="dropdown__menu" data-dropdown-target="menu">
