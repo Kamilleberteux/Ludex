@@ -37,15 +37,46 @@
       <div class="swiper-pagination"></div>
     </div>
 
-
   <div class="game-content">
   <h1><%= @game.name %></h1>
+<%# Theme %>
+<div class="etiquette">
    <% if @game.theme.present? %>
   <div class="category-tag">
     <i class="fa-solid fa-puzzle-piece"></i>
-    <%= @game.theme.capitalize %>
+    <p><%= @game.theme.capitalize %></p>
   </div>
 <% end %>
+
+    <%# Friends collection owners %>
+    <!-- ---------------------------
+    Button to friends owners
+    ---------------------------- -->
+
+    <div class="friends-section" data-controller="dropdown" data-action="click@window->dropdown#close">
+      <div class="friends-badge" data-action="click->dropdown#toggle" data-dropdown-target="addBtn">
+        <span class="friends-badge__text">Tes amis ont ce jeu</span>
+        <div class="friends-badge__avatars">
+          <% @owners.first(3).each do |owner| %>
+            <%= image_tag owner.profile_photo_url || 'default-user.png', class: "friends-badge__avatar" %>
+          <% end %>
+          <% if @owners.count > 3 %>
+            <span class="friends-badge__more">+<%= @owners.count - 3 %></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="dropdown__menu" data-dropdown-target="menu">
+        <p class="dropdown__label">Mes amis</p>
+        <% @owners.each do |owner| %>
+          <div class="friends-dropdown-item">
+            <%= image_tag owner.profile_photo_url || 'default-user.png', class: "friends__result-avatar" %>
+            <%= owner.username %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    </div>
+
 
     <%# 3. Grille d'infos (Les 4 petits carrés) %>
     <div class="info-grid">
