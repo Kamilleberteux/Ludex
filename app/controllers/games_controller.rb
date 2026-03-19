@@ -19,6 +19,11 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @similar_games = Game.nearest_neighbors(:embedding, @game.embedding, distance: "euclidean").first(5)
     @similar_games.shift
+
+    @friends = current_user.friends
+    @owners = @friends.select do |friend|
+      friend.has_game?(@game)
+    end
   end
 
   def index

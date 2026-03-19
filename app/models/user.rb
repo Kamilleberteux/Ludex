@@ -9,6 +9,11 @@ class User < ApplicationRecord
 
   after_create :create_default_collections # pour créer les collections par défaut à la création de l'utilisateur
 
+  def has_game?(game)
+    @games = collections.find_by(name: "Mes jeux").games
+    @games.include?(game)
+  end
+
   private
 
   def create_default_collections
