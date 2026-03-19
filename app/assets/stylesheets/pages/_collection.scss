@@ -82,7 +82,7 @@
   line-height: 0.9;       /* Évite que les lignes se collent */
   color: $ludex-green;
   margin-left: 1rem;
-  padding-top: 35px;
+  padding-top: 3px;
   -webkit-text-stroke: 0.3px black;
 
 }
@@ -103,4 +103,26 @@
   border-radius: 24px 24px 0 0;
   margin-top: -24px;
   padding: 32px 20px 100px;
+}
+
+.collection-show__back {
+  background: rgba($ludex-green, 0.30);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding: 0;
+  transition: background 0.15s ease;
+  margin-left: 20px;
+  margin-top: 28px;
+
+  &:hover {
+    background: rgba(white, 0.25);
+  }
 }

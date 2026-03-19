@@ -52,7 +52,7 @@
     <!-- ---------------------------
     Button to friends owners
     ---------------------------- -->
-
+    <% if @owners.count > 0 %>
     <div class="friends-section" data-controller="dropdown" data-action="click@window->dropdown#close">
       <div class="friends-badge" data-action="click->dropdown#toggle" data-dropdown-target="addBtn">
         <span class="friends-badge__text">Tes amis ont ce jeu</span>
@@ -75,6 +75,7 @@
         <% end %>
       </div>
     </div>
+        <% end %>
     </div>
 
 
@@ -94,9 +95,11 @@
         <i class="icon-sword"></i>
         <span class="text-bold">
         <% if @game.is_cooperative? %>
-         🤝 Cooperatif
+         🤝 <br>
+         Cooperatif
         <% else %>
-         ⚔️ Compétitif
+         ⚔️ <br>
+         Compétitif
         <% end %></span>
 
         <br>
