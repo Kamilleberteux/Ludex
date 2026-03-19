@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   back() {
-    if (this.currentStep > 0) {
+    if (this.currentStep) {
       this.currentStep--
       this.updateDisplay(false)
     }
@@ -38,7 +38,7 @@ export default class extends Controller {
   }
 
   addFriend(event) {
-    
+
   }
 
   search(event) {
