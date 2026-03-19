@@ -1,18 +1,32 @@
 <div class="title-and-tabs">
-  <h1 class="page-title">
     <% if @user == current_user %>
-      Mes Collections
+      <h1 class="page-title">
+          Mes Collections
+      </h1>
+      <%# Barre de navigation (les tabs horizontaux) %>
+      <div class="collections-scroll-container">
+        <% @collections.each do |collection| %>
+          <%= link_to collection.name, collection_path(collection),
+            class: "collection-tab #{'active' if @current_collection.id == collection.id}" %>
+      <% end %>
+      </div>
     <% else %>
-      Les collections de <%= @user.username %>
+      <h1 class="page-title">
+        Les collections de <%= @user.username %>
+      </h1>
+      <div class="collections-scroll-container">
+        <% @collections.each do |collection| %>
+          <%= link_to collection_path(collection),
+            class: "collection-tab #{'active' if @current_collection.id == collection.id}" do %>
+            <% if collection.name == "Mes jeux" %>
+              <p>Ses jeux</p>
+            <% else %>
+              <%= collection.name %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
-  </h1>
-  <%# Barre de navigation (les tabs horizontaux) %>
-  <div class="collections-scroll-container">
-    <% @collections.each do |collection| %>
-      <%= link_to collection.name, collection_path(collection),
-        class: "collection-tab #{'active' if @current_collection.id == collection.id}" %>
-    <% end %>
-  </div>
 
   <%# 2. Grille de jeux à 2 colonnes %>
   <div class="games-grid">
