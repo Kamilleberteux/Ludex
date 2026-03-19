@@ -8,7 +8,7 @@
 
     <div class="friends__search-section">
       <%= form_with url: friendships_path, method: :get, class: "friends__form",
-          data: { controller: "friendship", turbo_cache: false, turbo_frame: "game_results" } do |f| %>
+          data: { controller: "friendship", turbo_cache: false, turbo_frame: "friends_results" } do |f| %>
 
         <div class="friends__search-wrapper">
           <div class="friends__input-wrapper">
@@ -28,7 +28,7 @@
             <% end %>
           </div>
 
-          <turbo-frame id="game_results">
+          <turbo-frame id="friends_results">
             <% if @users&.any? %>
               <div class="friends__results-dropdown">
                 <% @users.each do |user| %>
