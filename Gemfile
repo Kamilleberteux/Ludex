@@ -78,4 +78,4 @@ end
 
 gem "neighbor"
 gem "informers"
-gem "pagy", "~> 9.3"
+gem "pagy", "~> 43.3"
